@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Gate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class GateEventFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'label' => fake()->randomElement([
+                'raise', 'lower'
+            ]),
+            'happens_at' => fake()->dateTime(),
+            'gate_id' => Gate::factory()
         ];
     }
 }

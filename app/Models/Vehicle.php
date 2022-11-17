@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User;
 
-class GateEvent extends Model
+class Vehicle extends Model
 {
     use HasFactory;
 
-    public function gate(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Gate::class);
+        return $this->belongsTo(User::class);
     }
 }

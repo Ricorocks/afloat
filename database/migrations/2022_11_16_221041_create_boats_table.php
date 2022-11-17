@@ -18,9 +18,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('make')->nullable();
-            $table->integer('length_in_centimeters');
-            $table->integer('width_in_centimeters');
-            $table->integer('draught_in_centimeters');
+            $table->integer('length_in_cm');
+            $table->integer('width_in_cm');
+            $table->integer('draught_in_cm');
             $table->string('type')->nullable();
             $table->date('date_of_construction')->nullable();
             $table->string('insurance_number')->nullable();

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Marina;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class BerthFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'leg' => fake()->randomLetter(),
+            'berth_number' => fake()->numberBetween(1,22),
+            'internal_id' => fake()->randomLetter(4),
+            'max_length_in_cm' => fake()->numberBetween(1000, 2000),
+            'max_width_in_cm' => fake()->numberBetween(300,400),
+            'max_draught_in_cm' => fake()->numberBetween(200,800),
+            'marina_id' => Marina::factory()
         ];
     }
 }

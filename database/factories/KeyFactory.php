@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Marina;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class KeyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'code' => fake()->randomAscii(8),
+            'marina_id' => Marina::factory(),
         ];
     }
 }

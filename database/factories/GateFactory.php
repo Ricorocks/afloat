@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Marina;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class GateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->randomElement([
+                'Main Gate', 'Marina Gate'
+            ]),
+            'marina_id' => Marina::factory(),
         ];
     }
 }
