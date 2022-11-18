@@ -18,7 +18,7 @@ class KeyFactory extends Factory
     public function definition()
     {
         return [
-            'code' => fake()->randomAscii(8),
+            'code' => fake()->sha1,
             'marina_id' => Marina::factory(),
         ];
     }

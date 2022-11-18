@@ -22,7 +22,7 @@ class VehicleFactory extends Factory
         return [
             'registration' => Str::upper($this->faker->bothify('??## ???')),
             'vin' => $this->faker->bothify('??#??##?#??######'),
-            'make' => $this->faker->word,
+            'make' => fake()->randomElement(['BWM', 'Mercedes', 'Porche', 'Tesla', 'VW', 'Audi']),
             'model' => $this->faker->word,
             'color' => $this->faker->colorName(),
             'fuel_type' => $this->faker->randomElement(['diesel', 'petrol', 'electric']),

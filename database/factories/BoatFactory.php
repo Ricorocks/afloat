@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Marina;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,6 +26,7 @@ class BoatFactory extends Factory
             'width_in_cm' => fake()->numberBetween(300, 500),
             'draught_in_cm' => fake()->numberBetween(200, 300),
             'user_id' => User::factory(),
+            'marina_id' => Marina::factory(),
         ];
     }
 }

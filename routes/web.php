@@ -18,4 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user-dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+Route::prefix('user')->group(function() {
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/dashboard', 'dashboard')->name('user.dashboard');
+    });
+});
+
+Route::prefix('marina')->group(function() {
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/dashboard', 'dashboard')->name('marina.dashboard');
+    });
+});

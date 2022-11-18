@@ -12,6 +12,12 @@ class UserController extends Controller
     {
         // This is demo
         $user = User::first();
-        return view('user.dashboard', ['user' => $user]);
+        $activeBoat = User::first()->boats->first();
+        $marina = $activeBoat->marina;
+        return view('user.dashboard', [
+            'user' => $user, 
+            'activeBoat' => $activeBoat,
+            'marina' => $marina
+        ]);
     }
 }

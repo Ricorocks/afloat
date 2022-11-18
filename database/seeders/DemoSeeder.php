@@ -28,14 +28,6 @@ class DemoSeeder extends Seeder
         // Create an admin
         Admin::factory()->create();
 
-        // Create a user
-        // "Buy them a boat"
-        // "Buy them a truuuuuuck to pull it" - Enought Chris Janson please!
-        $user = User::factory()
-            ->has(Boat::factory())
-            ->has(Vehicle::factory()->count(2))
-            ->create();
-
         // Make some background Marinas
 
         Marina::factory()
@@ -67,9 +59,17 @@ class DemoSeeder extends Seeder
 
         // Add some tides
 
+        // Create a user
+        // "Buy them a boat"
+        // "Buy them a truuuuuuck to pull it" - Enought Chris Janson please!
+        $user = User::factory()
+            ->has(Boat::factory()->for($marina))
+            ->has(Vehicle::factory()->count(2))
+            ->create();
+
         // Add a key to the marina and the user
 
-        Key::factory()->for($user)->for($marina)->count(2);
+        Key::factory()->for($user)->for($marina)->count(2)->create();
 
         // Attach the boat to the berth via a berthing
 

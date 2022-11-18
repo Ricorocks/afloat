@@ -30,4 +30,9 @@ class Marina extends Model
     {
         return $this->hasManyThrough(BerthContract::class, Berth::class);
     }
+
+    public function boats(): HasMany
+    {
+        return $this->hasMany(Boats::class);
+    }
 }
