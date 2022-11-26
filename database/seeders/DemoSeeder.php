@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Berth;
 use App\Models\BerthContract;
 use App\Models\Boat;
+use App\Models\BoatYard;
 use App\Models\Gate;
 use App\Models\GateEvent;
 use App\Models\Key;
@@ -42,6 +43,7 @@ class DemoSeeder extends Seeder
 
         $marina = Marina::factory()
             ->has(Berth::factory()->count(20))
+            ->has(BoatYard::factory())
             ->has(Gate::factory()->has(
                 GateEvent::factory()
                     ->count(10)
@@ -61,7 +63,7 @@ class DemoSeeder extends Seeder
 
         // Create a user
         // "Buy them a boat"
-        // "Buy them a truuuuuuck to pull it" - Enought Chris Janson please!
+        // "Buy them a truuuuuuck to pull it" - Enough Chris Janson please!
         $user = User::factory()
             ->has(Boat::factory()->for($marina))
             ->has(Vehicle::factory()->count(2))
@@ -81,7 +83,7 @@ class DemoSeeder extends Seeder
 
 
 
-        // Add an invoice
-
+        // Add an invoice or two
+        // oooh
     }
 }
