@@ -19,7 +19,7 @@ class BoatYard extends Model
     
     public function boatYardServices(): HasMany
     {
-        return $this->hasMany(BoatYardServices::class);
+        return $this->hasMany(BoatYardService::class);
     }
 
 

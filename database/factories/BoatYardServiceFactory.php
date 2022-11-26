@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BoatYardServices>
  */
-class BoatYardServicesFactory extends Factory
+class BoatYardServiceFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,10 +18,12 @@ class BoatYardServicesFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->words(3),
-            'notes' => fake()->paragraph(),
+            'name' => fake()->randomElement([
+                'Lift Out', 'Antifoul', 'Jet Wash', 'Replace Annode'
+            ]),
+            'notes' => '',
             'price' => '10000',
-            'curency' => 'GBP',
+            'currency' => 'GBP',
             'vat_rate' => '20',
             'boat_yard_id' => BoatYard::factory()
             //
