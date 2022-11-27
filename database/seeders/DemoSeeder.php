@@ -7,6 +7,7 @@ use App\Models\Berth;
 use App\Models\BerthContract;
 use App\Models\Boat;
 use App\Models\BoatYard;
+use App\Models\BoatYardService;
 use App\Models\Gate;
 use App\Models\GateEvent;
 use App\Models\Key;
@@ -43,7 +44,10 @@ class DemoSeeder extends Seeder
 
         $marina = Marina::factory()
             ->has(Berth::factory()->count(20))
-            ->has(BoatYard::factory())
+            ->has(BoatYard::factory()->has(
+                BoatYardService::factory()
+                ->count(3)
+            ))
             ->has(Gate::factory()->has(
                 GateEvent::factory()
                     ->count(10)
