@@ -10,6 +10,14 @@ class GateEvent extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'label', 'happens_at'
+    ];
+
+    protected $casts = [
+        'happens_at' => 'datetime'
+    ];
+
     public function gate(): BelongsTo
     {
         return $this->belongsTo(Gate::class);

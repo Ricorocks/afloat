@@ -4,13 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel User</title>
+        <title>Laravel Marina</title>
         
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         @vite('resources/css/app.css', 'resources/js/app.js')
+        <livewire:styles />
 
         <style>
             body {
@@ -20,5 +21,6 @@
     </head>
     <body class="antialiased h-full">
         {{ $slot }}
+        <livewire:scripts />
     </body>
 </html>
