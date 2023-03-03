@@ -12,7 +12,8 @@ class MarinaController extends Controller
         // This is demo
         $marina = Marina::where('name', 'Demo Marina')->get()->first();
         return view('marina.dashboard', [
-            'marina' => $marina
+            'marina' => $marina,
+            'mainGateActions' => $marina->gates->first()->gateEvents()->nextEvents(4)->get()
         ]);
     }
 }
