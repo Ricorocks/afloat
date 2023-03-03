@@ -24,6 +24,9 @@ class BerthFactory extends Factory
             'max_length_in_cm' => fake()->numberBetween(1000, 2000),
             'max_width_in_cm' => fake()->numberBetween(300,400),
             'max_draught_in_cm' => fake()->numberBetween(200,800),
+            'overlay_x' => fake()->numberBetween(0,100),
+            'overlay_y' => fake()->numberBetween(0,100),
+            'overlay_rotate' => fake()->numberBetween(0,365),
             'marina_id' => Marina::factory()
         ];
     }
