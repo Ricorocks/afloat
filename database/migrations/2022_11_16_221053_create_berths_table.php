@@ -18,10 +18,13 @@ return new class extends Migration
             $table->id();
             $table->string('leg');
             $table->string('berth_number');
-            $table->string('internal_id');
+            $table->string('internal_id')->nullable();
             $table->integer('max_length_in_cm');
             $table->integer('max_width_in_cm');
             $table->integer('max_draught_in_cm');
+            $table->integer('overlay_x')->default(0);
+            $table->integer('overlay_y')->default(0);
+            $table->integer('overlay_rotate')->default(0);
             $table->foreignIdFor(Marina::class);
             $table->timestamps();
             $table->softDeletes();

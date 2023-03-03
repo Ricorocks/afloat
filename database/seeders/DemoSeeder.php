@@ -32,7 +32,13 @@ class DemoSeeder extends Seeder
         // Make some background Marinas
 
         Marina::factory()
-            ->has(Berth::factory()->count(20))
+            ->has(Berth::factory()->count(10)->state(new Sequence(
+                fn($sequence) => [
+                    'overlay_x' => 10,
+                    'overlay_y' => 20,
+                    'overlay_rotate' => 0
+                ]
+            )))
             ->count(3)
             ->create();
 
@@ -40,9 +46,9 @@ class DemoSeeder extends Seeder
         // Create our demo marina
         // Add a gate
         // Add some gate events
+        $date = now()->subDay(2);
 
         $marina = Marina::factory()
-            ->has(Berth::factory()->count(20))
             ->has(BoatYard::factory())
             ->has(Gate::factory()->has(
                 GateEvent::factory()
@@ -50,7 +56,7 @@ class DemoSeeder extends Seeder
                     ->state(new Sequence(
                         fn ($sequence) => [
                             'label' => $sequence->index  % 2 == 0 ? 'lowered' : 'raised',
-                            'happens_at' => now()->addHour(($sequence->index*6))
+                            'happens_at' => $date->clone()->addHour(($sequence->index*6))
                             ]
                     ))
                 ))
@@ -58,6 +64,34 @@ class DemoSeeder extends Seeder
                 'name' => 'Demo Marina'
             ]);
 
+        Berth::factory()->for($marina)->create([
+            'overlay_x' => 24,
+            'overlay_y' => 37,
+            'overlay_rotate' => 0,
+            'leg' => 'A',
+            'berth_number' => 10
+        ]);
+        Berth::factory()->for($marina)->create([
+            'overlay_x' => 24,
+            'overlay_y' => 43,
+            'overlay_rotate' => 0,
+            'leg' => 'A',
+            'berth_number' => 9
+        ]);
+        Berth::factory()->for($marina)->create([
+            'overlay_x' => 29,
+            'overlay_y' => 37,
+            'overlay_rotate' => 180,
+            'leg' => 'A',
+            'berth_number' => 12
+        ]);
+        Berth::factory()->for($marina)->create([
+            'overlay_x' => 49,
+            'overlay_y' => 24,
+            'overlay_rotate' => 85,
+            'leg' => 'B',
+            'berth_number' => 25
+        ]);
 
         // Add some tides
 
