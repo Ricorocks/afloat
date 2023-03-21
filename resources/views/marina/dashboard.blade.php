@@ -1,5 +1,5 @@
 <x-user.layouts.layout>
-    <x-user.dashboard.dashboard :marina="$marina">
+    <x-user.dashboard.dashboard :marina="$marina" :mainGateActions="$mainGateActions">
         
         <h1 class="text-2xl font-bold mb-5">Welcome {{ $marina->name }}</h1>
 
@@ -27,13 +27,17 @@
             <x-user.dashboard.block title="Arrivals">
                 (none)
             </x-user.dashboard-block>
+            <x-user.dashboard.block title="Berths">
+                <div><a href="{{ route('marina.berths.manage', [$marina]) }}">Manage</a></div>
+                <div><a href="{{ route('marina.berths.overview', [$marina]) }}">Overview</a></div>
+            </x-user.dashboard-block>
             <x-user.dashboard.block title="Gates">
                 @foreach($marina->gates as $gate)
                 <div class="p-3">
-                    <a href="{{ route('marina.gates.events.show', [$marina, $gate]) }}">- {{ $gate->name }}</a>
+                    <a href="{{ route('marina.gates.events.show', [$marina, $gate]) }}">View {{ $gate->name }}</a>
                 </div>
                 @endforeach
-                <a href="{{ route('marina.gates.index', $marina) }}">List</a>
+                <a href="{{ route('marina.gates.index', $marina) }}">Edit Gates</a>
             </x-user.dashboard-block>
         </div>
         

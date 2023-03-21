@@ -1,4 +1,4 @@
-@props(['marina'])
+@props(['marina', 'mainGateActions'])
 <div class="min-h-full">
     <header class="bg-blue-900 pb-24">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -287,10 +287,11 @@
                                 </div>
                                 <div class="mb-5">
                                     <h3 class="text-lg font-bold">Gate Times</h3>
-                                    <p>x</p>
-                                    <p>x</p>
-                                    <p>x</p>
-                                    <p>x</p>
+                                    @isset($mainGateActions)
+                                        @foreach($mainGateActions as $action)
+                                        <p>{{ $action->label }} - {{ $action->happens_at->format('d/m/Y H:i') }}</p>
+                                        @endforeach
+                                    @endisset
                                 </div>
                                 <div class="mb-5">
                                     <h3 class="text-lg font-bold">Tide Times</h3>

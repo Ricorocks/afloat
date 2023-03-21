@@ -16,10 +16,14 @@ class GateEventAdd extends Component
     public $gate;
     public $label;
     public $happensAt;
+    public $happensAtTime;
+    public $happensAtDate;
 
     protected $rules = [
         'label' => 'required|min:2',
         'happensAt' => 'required',
+        'happensAtDate' => 'required',
+        'happensAtTime' => 'required'
     ];
 
     public function updated($propertyName)
@@ -33,12 +37,13 @@ class GateEventAdd extends Component
         
         $this->gate->gateEvents()->save(new GateEvent([
             'label' => $this->label,
-            'happens_at' => $this->happensAt,
+            'happens_at' => $this->happensAtDate." ".$this->happensAtTime,
         ]));
 
         session()->flash('message', 'Event Added');
         $this->emit('gateEventsUpdated');
         $this->label = "";
         $this->happensAt = "";
+        $this->happensAtTime = "";
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BerthController;
 use App\Http\Controllers\GateController;
 use App\Http\Controllers\GateEventController;
 use App\Http\Controllers\MarinaController;
@@ -37,5 +38,9 @@ Route::prefix('marina')->group(function() {
     });
     Route::controller(GateEventController::class)->group(function() {
         Route::get('{marina}/gates/{gate}/events', 'show')->name('marina.gates.events.show');
+    });
+    Route::controller(BerthController::class)->group(function() {
+        Route::get('{marina}/berths/', 'overview')->name('marina.berths.overview');
+        Route::get('{marina}/berths/manage', 'manage')->name('marina.berths.manage');
     });
 });
