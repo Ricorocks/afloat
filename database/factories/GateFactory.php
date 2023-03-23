@@ -19,7 +19,10 @@ class GateFactory extends Factory
     {
         return [
             'name' => fake()->randomElement([
-                'Main Gate', 'Marina Gate'
+                'Main Gate', 'Marina Gate',
+            ]),
+            'location' => fake()->randomElement([
+                'Marina Entrance', 'Marina Side',
             ]),
             'marina_id' => Marina::factory(),
         ];

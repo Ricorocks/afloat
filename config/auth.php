@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'marinastaff' => [
+            'driver' => 'session',
+            'provider' => 'marinastaff',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'marinastaff' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MarinaStaff::class,
         ],
 
         // 'users' => [
@@ -103,6 +111,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'marinastaff' => [
+            'provider' => 'marinastaff',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

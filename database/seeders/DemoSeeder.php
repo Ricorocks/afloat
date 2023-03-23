@@ -11,11 +11,13 @@ use App\Models\Gate;
 use App\Models\GateEvent;
 use App\Models\Key;
 use App\Models\Marina;
+use App\Models\MarinaStaff;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DemoSeeder extends Seeder
 {
@@ -39,6 +41,7 @@ class DemoSeeder extends Seeder
                     'overlay_rotate' => 0
                 ]
             )))
+            ->has(Gate::factory())
             ->count(3)
             ->create();
 
@@ -63,6 +66,13 @@ class DemoSeeder extends Seeder
             ->create([
                 'name' => 'Demo Marina'
             ]);
+        
+        MarinaStaff::factory([
+            'email' => 'richard@ricorocks.agency',
+            'password' => Hash::make('password'),
+            'name' => 'Richard Plant',
+            'current_marina' => $marina,
+        ])->create();
 
         Berth::factory()->for($marina)->create([
             'overlay_x' => 24,
