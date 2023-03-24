@@ -46,6 +46,13 @@ class DemoSeeder extends Seeder
             ->create();
 
 
+            MarinaStaff::factory([
+                'email' => 'hello@ricorocks.agency',
+                'password' => Hash::make('password'),
+                'name' => 'John Doe',
+                'current_marina' => Marina::all()->first(),
+            ])->create();
+            
         // Create our demo marina
         // Add a gate
         // Add some gate events

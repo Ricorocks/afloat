@@ -42,4 +42,5 @@ class Marina extends Model
     {
         return $this->hasone(BoatYard::class);
     }
+
 }

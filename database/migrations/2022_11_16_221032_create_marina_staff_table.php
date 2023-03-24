@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignIdFor(Marina::class, 'current_marina');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
