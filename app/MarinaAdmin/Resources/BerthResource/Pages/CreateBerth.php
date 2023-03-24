@@ -1,8 +1,8 @@
 <?php
 
-namespace App\FilamentTeams\Resources\BerthResource\Pages;
+namespace App\MarinaAdmin\Resources\BerthResource\Pages;
 
-use App\FilamentTeams\Resources\BerthResource;
+use App\MarinaAdmin\Resources\BerthResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;

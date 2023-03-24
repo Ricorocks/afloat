@@ -18,7 +18,7 @@ use Livewire\Component;
 /**
  * @property ComponentContainer $form
  */
-class FilamentTeamsLogin extends Component implements HasForms
+class MarinaAdminLogin extends Component implements HasForms
 {
     use InteractsWithForms;
     use WithRateLimiting;
@@ -31,10 +31,10 @@ class FilamentTeamsLogin extends Component implements HasForms
 
     public function mount(): void
     {
-        $guardName = config('filament-teams.auth.guard');
+        $guardName = config('marina-admin.auth.guard');
 
         if (Auth::guard($guardName)->check()) {
-            redirect()->route('filament-teams.pages.dashboard');
+            redirect()->route('marina-admin.pages.dashboard');
         }
 
         $this->form->fill();
@@ -55,7 +55,7 @@ class FilamentTeamsLogin extends Component implements HasForms
 
         $data = $this->form->getState();
 
-        $guardName = config('filament-teams.auth.guard');
+        $guardName = config('marina-admin.auth.guard');
 
         if (!Auth::guard($guardName)->attempt([
             'email' => $data['email'],
@@ -67,7 +67,7 @@ class FilamentTeamsLogin extends Component implements HasForms
         }
 
         $request->session()->regenerate();
-        return redirect()->route('filament-teams.pages.dashboard');
+        return redirect()->route('marina-admin.pages.dashboard');
     }
 
     protected function getFormSchema(): array
@@ -91,7 +91,7 @@ class FilamentTeamsLogin extends Component implements HasForms
     {
         return view('filament::login')
             ->layout('filament::components.layouts.card', [
-                'title' => __('filament-teams Login'),
+                'title' => __('marina-admin Login'),
             ]);
     }
 }

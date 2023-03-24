@@ -1,9 +1,9 @@
 <?php
 
-namespace App\FilamentTeams\Resources;
+namespace App\MarinaAdmin\Resources;
 
-use App\FilamentTeams\Resources\GateResource\Pages;
-use App\FilamentTeams\Resources\GateResource\RelationManagers;
+use App\MarinaAdmin\Resources\GateResource\Pages;
+use App\MarinaAdmin\Resources\GateResource\RelationManagers;
 use App\Models\Gate;
 use Filament\Forms;
 use Filament\Resources\Form;

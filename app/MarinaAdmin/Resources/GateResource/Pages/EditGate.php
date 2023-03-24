@@ -1,8 +1,8 @@
 <?php
 
-namespace App\FilamentTeams\Resources\GateResource\Pages;
+namespace App\MarinaAdmin\Resources\GateResource\Pages;
 
-use App\FilamentTeams\Resources\GateResource;
+use App\MarinaAdmin\Resources\GateResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\FilamentTeams\Resources;
+namespace App\MarinaAdmin\Resources;
 
-use App\FilamentTeams\Resources\BerthResource\Pages;
-use App\FilamentTeams\Resources\BerthResource\RelationManagers;
+use App\MarinaAdmin\Resources\BerthResource\Pages;
+use App\MarinaAdmin\Resources\BerthResource\RelationManagers;
 use App\Models\Berth;
 use Filament\Forms;
 use Filament\Resources\Form;

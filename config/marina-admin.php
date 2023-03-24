@@ -1,7 +1,7 @@
 <?php
 
-use App\FilamentTeams\Middleware\FilamentTeamsMiddleware;
-use App\Http\Livewire\FilamentTeamsLogin;
+use App\MarinaAdmin\Middleware\MarinaAdminMiddleware;
+use App\Http\Livewire\MarinaAdminLogin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Http\Middleware\MirrorConfigToSubpackages;
@@ -27,7 +27,7 @@ return [
     |
     */
 
-    'path' => env('FILAMENT_PATH', 'filament-teams'),
+    'path' => env('FILAMENT_PATH', 'marina-admin'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,8 +52,8 @@ return [
     */
 
     'pages' => [
-        'namespace' => 'App\\FilamentTeams\\Pages',
-        'path' => app_path('FilamentTeams/Pages'),
+        'namespace' => 'App\\MarinaAdmin\\Pages',
+        'path' => app_path('MarinaAdmin/Pages'),
         'register' => [],
     ],
 
@@ -68,8 +68,8 @@ return [
     */
 
     'resources' => [
-        'namespace' => 'App\\FilamentTeams\\Resources',
-        'path' => app_path('FilamentTeams/Resources'),
+        'namespace' => 'App\\MarinaAdmin\\Resources',
+        'path' => app_path('MarinaAdmin/Resources'),
         'register' => [],
     ],
 
@@ -84,8 +84,8 @@ return [
     */
 
     'widgets' => [
-        'namespace' => 'App\\FilamentTeams\\Widgets',
-        'path' => app_path('FilamentTeams/Widgets'),
+        'namespace' => 'App\\MarinaAdmin\\Widgets',
+        'path' => app_path('MarinaAdmin/Widgets'),
         'register' => [
             Widgets\AccountWidget::class,
         ],
@@ -102,8 +102,8 @@ return [
     */
 
     'livewire' => [
-        'namespace' => 'App\\FilamentTeams',
-        'path' => app_path('FilamentTeams'),
+        'namespace' => 'App\\MarinaAdmin',
+        'path' => app_path('MarinaAdmin'),
     ],
 
     /*
@@ -119,7 +119,7 @@ return [
     'auth' => [
         'guard' => env('FILAMENT_AUTH_GUARD', 'marinastaff'),
         'pages' => [
-            'login' => FilamentTeamsLogin::class,
+            'login' => MarinaAdminLogin::class,
         ],
     ],
 
@@ -135,7 +135,7 @@ return [
 
     'middleware' => [
         'auth' => [
-            FilamentTeamsMiddleware::class,
+            MarinaAdminMiddleware::class,
         ],
         'base' => [
             EncryptCookies::class,

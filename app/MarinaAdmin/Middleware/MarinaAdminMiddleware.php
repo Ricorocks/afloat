@@ -1,15 +1,15 @@
 <?php
 
-namespace App\FilamentTeams\Middleware;
+namespace App\MarinaAdmin\Middleware;
 
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
-class FilamentTeamsMiddleware extends Middleware
+class MarinaAdminMiddleware extends Middleware
 {
     protected function authenticate($request, array $guards): void
     {
-        $guardName = config('filament-teams.auth.guard');
+        $guardName = config('marina-admin.auth.guard');
         $guard = $this->auth->guard($guardName);
 
         if (!$guard->check()) {
@@ -33,6 +33,6 @@ class FilamentTeamsMiddleware extends Middleware
 
     protected function redirectTo($request): string
     {
-        return route('filament-teams.auth.login');
+        return route('marina-admin.auth.login');
     }
 }
