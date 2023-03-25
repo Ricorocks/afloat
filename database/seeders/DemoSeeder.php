@@ -74,6 +74,13 @@ class DemoSeeder extends Seeder
             ]);
 
         MarinaStaff::factory([
+            'email' => 'richard@ricorocks.agency',
+            'password' => Hash::make('password'),
+            'name' => 'Richard Plant',
+            'current_marina' => $marina,
+        ])->create();
+
+        MarinaStaff::factory([
             'email' => 'eluert@ricorocks.agency',
             'password' => Hash::make('password'),
             'name' => 'Eluert Mukja',
