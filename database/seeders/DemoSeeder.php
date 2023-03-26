@@ -14,7 +14,6 @@ use App\Models\Marina;
 use App\Models\MarinaStaff;
 use App\Models\User;
 use App\Models\Vehicle;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -52,7 +51,7 @@ class DemoSeeder extends Seeder
                 'name' => 'John Doe',
                 'current_marina' => Marina::all()->first(),
             ])->create();
-            
+
         // Create our demo marina
         // Add a gate
         // Add some gate events
@@ -73,7 +72,21 @@ class DemoSeeder extends Seeder
             ->create([
                 'name' => 'Demo Marina'
             ]);
-        
+
+        MarinaStaff::factory([
+            'email' => 'richard@ricorocks.agency',
+            'password' => Hash::make('password'),
+            'name' => 'Richard Plant',
+            'current_marina' => $marina,
+        ])->create();
+
+        MarinaStaff::factory([
+            'email' => 'eluert@ricorocks.agency',
+            'password' => Hash::make('password'),
+            'name' => 'Eluert Mukja',
+            'current_marina' => $marina,
+        ])->create();
+
         MarinaStaff::factory([
             'email' => 'richard@ricorocks.agency',
             'password' => Hash::make('password'),
@@ -110,31 +123,33 @@ class DemoSeeder extends Seeder
             'berth_number' => 25
         ]);
 
-        // Add some tides
 
-        // Create a user
-        // "Buy them a boat"
-        // "Buy them a truuuuuuck to pull it" - Enough Chris Janson please!
-        $user = User::factory()
+        User::factory()
+            ->times(count($users = [
+                'richard@ricorocks.agency' => 'Richard Plant',
+                'eluert@ricorocks.agency' => 'Eluert Mukja',
+            ]))
             ->has(Boat::factory()->for($marina))
             ->has(Vehicle::factory()->count(2))
-            ->create();
+            ->afterCreating(function (User $user) use($marina) {
+                Key::factory()->for($user)->for($marina)->count(2)->create();
 
-        // Add a key to the marina and the user
+                // Attach the boat to the berth via a berthing
+                BerthContract::factory()->create([
+                    'berth_id' => $marina->berths()->inRandomOrder()->first(),
+                    'user_id' => $user,
+                    'boat_id' => $user->boats()->inRandomOrder()->first(),
+                ]);
 
-        Key::factory()->for($user)->for($marina)->count(2)->create();
-
-        // Attach the boat to the berth via a berthing
-
-        BerthContract::factory()->create([
-            'berth_id' => $marina->berths->first(),
-            'user_id' => $user,
-            'boat_id' => $user->boats->first(),
-        ]);
-
-
-
-        // Add an invoice or two
-        // oooh
+                // Add an invoice or two
+                // oooh
+            })
+            ->create(
+                new Sequence(
+                    ...collect($users)
+                           ->map(fn(string $name, string $email) => ['name' => $name, 'email' => $email])
+                           ->values()
+                )
+            );
     }
 }

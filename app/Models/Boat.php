@@ -13,6 +13,10 @@ class Boat extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'name', 'length_in_cm', 'width_in_cm', 'draught_in_cm'
+    ];
+
     public function user(): HasOne
     {
         return $this->hasOne(User::class);

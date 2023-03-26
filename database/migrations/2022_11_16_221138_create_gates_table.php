@@ -17,7 +17,9 @@ return new class extends Migration
         Schema::create('gates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('location');
             $table->foreignIdFor(Marina::class);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
