@@ -87,13 +87,6 @@ class DemoSeeder extends Seeder
             'current_marina' => $marina,
         ])->create();
 
-        MarinaStaff::factory([
-            'email' => 'richard@ricorocks.agency',
-            'password' => Hash::make('password'),
-            'name' => 'Richard Plant',
-            'current_marina' => $marina,
-        ])->create();
-
         Berth::factory()->for($marina)->create([
             'overlay_x' => 24,
             'overlay_y' => 37,
