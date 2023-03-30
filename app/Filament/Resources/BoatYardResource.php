@@ -64,7 +64,7 @@ class BoatYardResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\BoatYardServicesRelationManager::class,
         ];
     }
     

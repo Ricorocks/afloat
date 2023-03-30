@@ -7,7 +7,6 @@ use App\Filament\Resources\GateResource\RelationManagers;
 use App\Models\Gate;
 use Filament\Forms;
 use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -40,15 +39,14 @@ class GateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('location'),
-                Tables\Columns\TextColumn::make('marina.name'),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('name')->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('marina.name')->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('location')->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')->label('last_updated')
+                    ->dateTime()->sortable(),
             ])
             ->filters([
                 //
@@ -61,14 +59,14 @@ class GateResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             RelationManagers\GateEventsRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -77,5 +75,10 @@ class GateResource extends Resource
             'view' => Pages\ViewGate::route('/{record}'),
             'edit' => Pages\EditGate::route('/{record}/edit'),
         ];
-    }    
+    }
+
+    protected function shouldPersistTableSortInSession(): bool
+    {
+        return true;
+    }
 }

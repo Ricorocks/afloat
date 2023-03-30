@@ -43,10 +43,7 @@ class GateEventResource extends Resource
                 Tables\Columns\TextColumn::make('happens_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('gate.name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('gate.marina.name'),
             ])
             ->filters([
                 //
