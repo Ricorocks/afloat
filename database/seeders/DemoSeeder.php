@@ -7,6 +7,7 @@ use App\Models\Berth;
 use App\Models\BerthContract;
 use App\Models\Boat;
 use App\Models\BoatYard;
+use App\Models\BoatYardService;
 use App\Models\Gate;
 use App\Models\GateEvent;
 use App\Models\Key;
@@ -59,7 +60,7 @@ class DemoSeeder extends Seeder
         $date = now()->subDay(2);
 
         $marina = Marina::factory()
-            ->has(BoatYard::factory())
+            ->has($boatyard = BoatYard::factory())
             ->has(Gate::factory()->has(
                 GateEvent::factory()
                     ->count(10)
@@ -132,7 +133,9 @@ class DemoSeeder extends Seeder
             'boat_id' => $user->boats->first(),
         ]);
 
+        // Add some Boatyard Services
 
+        BoatYardService::factory()->for($boatyard)->create();
 
         // Add an invoice or two
         // oooh
