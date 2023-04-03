@@ -60,7 +60,7 @@ class DemoSeeder extends Seeder
         $date = now()->subDay(2);
 
         $marina = Marina::factory()
-            ->has($boatyard = BoatYard::factory())
+            ->has($boatyard = BoatYard::factory()->has(BoatYardService::factory(2)))
             ->has(Gate::factory()->has(
                 GateEvent::factory()
                     ->count(10)
@@ -132,10 +132,6 @@ class DemoSeeder extends Seeder
             'user_id' => $user,
             'boat_id' => $user->boats->first(),
         ]);
-
-        // Add some Boatyard Services
-
-        BoatYardService::factory()->for($boatyard)->create();
 
         // Add an invoice or two
         // oooh

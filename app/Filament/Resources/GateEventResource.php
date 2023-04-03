@@ -17,7 +17,7 @@ class GateEventResource extends Resource
 {
     protected static ?string $model = GateEvent::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar';
 
     protected static ?string $navigationGroup = 'Gates';
 

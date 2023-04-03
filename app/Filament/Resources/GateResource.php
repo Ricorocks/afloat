@@ -17,7 +17,7 @@ class GateResource extends Resource
 {
     protected static ?string $model = Gate::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-key';
 
     protected static ?string $navigationGroup = 'Gates';
 

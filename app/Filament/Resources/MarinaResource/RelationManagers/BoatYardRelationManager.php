@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\BoatYardResource\RelationManagers;
+namespace App\Filament\Resources\MarinaResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -10,9 +10,9 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class BoatYardServicesRelationManager extends RelationManager
+class BoatYardRelationManager extends RelationManager
 {
-    protected static string $relationship = 'boatYardServices';
+    protected static string $relationship = 'boatYard';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -30,9 +30,7 @@ class BoatYardServicesRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->searchable(),
-                Tables\Columns\TextColumn::make('price')->money('GBP')->sortable(),
-                Tables\Columns\CheckboxColumn::make('is_active'),
+                Tables\Columns\TextColumn::make('name'),
             ])
             ->filters([
                 //
@@ -43,6 +41,7 @@ class BoatYardServicesRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

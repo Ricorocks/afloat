@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MarinaStaffResource\Pages;
-use App\Filament\Resources\MarinaStaffResource\RelationManagers;
-use App\Models\MarinaStaff;
+use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,15 +13,11 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class MarinaStaffResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = MarinaStaff::class;
+    protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-
-    protected static ?string $navigationGroup = 'Marina Admin';
-
-    protected static ?string $navigationLabel = 'Marina Staff';
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
     {
@@ -32,11 +28,11 @@ class MarinaStaffResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required(),
+                Forms\Components\TextInput::make('language')
+                    ->required(),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->required(),
-                Forms\Components\TextInput::make('current_marina')
                     ->required(),
             ]);
     }
@@ -47,24 +43,24 @@ class MarinaStaffResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('language'),
+                Tables\Columns\TextColumn::make('telephone_number'),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('current_marina'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\ForceDeleteBulkAction::make(),
-                Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
     
@@ -78,17 +74,10 @@ class MarinaStaffResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMarinaStaff::route('/'),
-            'create' => Pages\CreateMarinaStaff::route('/create'),
-            'edit' => Pages\EditMarinaStaff::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'view' => Pages\ViewUser::route('/{record}'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }    
-    
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }
