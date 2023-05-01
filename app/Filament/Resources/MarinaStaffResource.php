@@ -17,7 +17,11 @@ class MarinaStaffResource extends Resource
 {
     protected static ?string $model = MarinaStaff::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+
+    protected static ?string $navigationGroup = 'Marina Admin';
+
+    protected static ?string $navigationLabel = 'Marina Staff';
 
     public static function form(Form $form): Form
     {

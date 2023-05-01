@@ -7,6 +7,7 @@ use App\Filament\Resources\MarinaResource\RelationManagers;
 use App\Models\Marina;
 use Filament\Forms;
 use Filament\Resources\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -17,7 +18,9 @@ class MarinaResource extends Resource
 {
     protected static ?string $model = Marina::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-office-building';
+
+    protected static ?string $navigationGroup = 'Marina Admin';
 
     public static function form(Form $form): Form
     {
@@ -73,14 +76,13 @@ class MarinaResource extends Resource
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -92,7 +94,8 @@ class MarinaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\GatesRelationManager::class,
+            RelationManagers\BoatYardRelationManager::class,
         ];
     }
     
@@ -101,6 +104,7 @@ class MarinaResource extends Resource
         return [
             'index' => Pages\ListMarinas::route('/'),
             'create' => Pages\CreateMarina::route('/create'),
+            'view' => Pages\ViewMarina::route('/{record}'),
             'edit' => Pages\EditMarina::route('/{record}/edit'),
         ];
     }    
