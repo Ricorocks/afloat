@@ -21,5 +21,11 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('password'),
             'name' => 'Richard Plant',
         ])->create();
+
+        Admin::factory([
+            'email' => 'eluert@ricorocks.agency',
+            'password' => Hash::make('password'),
+            'name' => 'Eluert Mukja',
+        ])->create();
     }
 }
