@@ -43,4 +43,9 @@ class Marina extends Model
         return $this->hasone(BoatYard::class);
     }
 
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
 }

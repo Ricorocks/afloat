@@ -12,6 +12,8 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Ysfkaya\FilamentPhoneInput\PhoneInput;
+use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 
 class UserResource extends Resource
 {
@@ -30,10 +32,13 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('language')
                     ->required(),
+                PhoneInput::make('telephone_number')
+                    ->displayNumberFormat(PhoneInputNumberType::INTERNATIONAL),
+                
                 Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required(),
+                // Forms\Components\TextInput::make('password')
+                //     ->password()
+                //     ->required(),
             ]);
     }
 
@@ -43,8 +48,8 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('language'),
                 Tables\Columns\TextColumn::make('telephone_number'),
+                Tables\Columns\TextColumn::make('language'),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')
