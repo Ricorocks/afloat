@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('currency')->default('GBP');
             $table->foreignIdFor(Invoice::class);
             $table->foreignIdFor(BoatYardService::class)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Boat::class)->nullable();
             $table->foreignIdFor(BoatYard::class)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
