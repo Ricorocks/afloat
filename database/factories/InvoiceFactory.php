@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Boat;
+use App\Models\Marina;
+use App\Models\MarinaStaff;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +21,11 @@ class InvoiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'due_at' => now()->addDays(30),
+            'marina_id' => Marina::factory(),
+            'marina_staff_id' => MarinaStaff::factory(),
+            'user_id' => User::factory(),
+            'boat_id' => Boat::factory(),
         ];
     }
 }

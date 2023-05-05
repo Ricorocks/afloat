@@ -10,6 +10,8 @@ use App\Models\BoatYard;
 use App\Models\BoatYardService;
 use App\Models\Gate;
 use App\Models\GateEvent;
+use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use App\Models\Key;
 use App\Models\Marina;
 use App\Models\MarinaStaff;
@@ -136,7 +138,7 @@ class DemoSeeder extends Seeder
                 ]);
 
                 // Add an invoice or two
-                // oooh
+                Invoice::factory()->has(InvoiceItem::factory(1))->create();
             })
             ->create(
                 new Sequence(

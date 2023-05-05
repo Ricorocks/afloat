@@ -20,7 +20,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('issued_at');
+            $table->dateTime('issued_at')->default(now());
             $table->dateTime('cancelled_at')->nullable();
             $table->date('due_at')->nullable();
             $table->foreignIdFor(Marina::class);
