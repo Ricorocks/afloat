@@ -47,6 +47,14 @@ class InvoiceResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('total_without_vat')
+                ->getStateUsing(function (Invoice $record): int {
+                    return $record->sumWithoutVat;
+                })->money('GBP'),
+                Tables\Columns\TextColumn::make('total_with_vat')
+                ->getStateUsing(function (Invoice $record): int {
+                    return $record->sumWithVat;
+                })->money('GBP'),
                 Tables\Columns\TextColumn::make('issued_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('cancelled_at')
@@ -58,8 +66,6 @@ class InvoiceResource extends Resource
                 Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('boat.name'),
                 Tables\Columns\TextColumn::make('boatYard.name'),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -81,7 +87,7 @@ class InvoiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\InvoiceItemsRelationManager::class
         ];
     }
     

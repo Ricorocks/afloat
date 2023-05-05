@@ -17,7 +17,21 @@ class InvoiceItemFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->randomElement([
+                'Lift out', 
+                'New anode', 
+                'Cleaning work',
+                'Antifoul',
+                'Welding',
+                'Sail repair',
+                'Rigging work',
+                'Painting',
+                'Interior repair',
+                'Upgrade wiring',
+                'Instrument fix'
+            ]),
+            'amount' => fake()->numberBetween(10000,100000),
+            'vat_rate' => 20,
         ];
     }
 }

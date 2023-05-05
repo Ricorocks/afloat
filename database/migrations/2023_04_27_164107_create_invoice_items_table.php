@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('amount')->default('0');
             $table->string('currency')->default('GBP');
+            $table->integer('vat_rate')->default(0);
+            $table->integer('quantity')->default(1);
             $table->foreignIdFor(Invoice::class);
             $table->foreignIdFor(BoatYardService::class)->nullable();
             $table->softDeletes();

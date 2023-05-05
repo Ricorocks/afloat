@@ -12,6 +12,16 @@ class Invoice extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public function getSumWithoutVatAttribute()
+    {
+        return $this->invoiceItems->sum('sumAmountWithoutVat');
+    }
+
+    public function getSumWithVatAttribute()
+    {
+        return $this->invoiceItems->sum('sumAmountWithVat');
+    }
+
     public function marina(): BelongsTo
     {
         return $this->belongsTo(Marina::class);

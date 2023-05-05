@@ -138,7 +138,7 @@ class DemoSeeder extends Seeder
                 ]);
 
                 // Add an invoice or two
-                Invoice::factory()->has(InvoiceItem::factory(1))->create();
+                Invoice::factory()->has(InvoiceItem::factory(2))->create();
             })
             ->create(
                 new Sequence(
