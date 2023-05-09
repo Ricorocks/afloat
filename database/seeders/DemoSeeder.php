@@ -15,6 +15,7 @@ use App\Models\InvoiceItem;
 use App\Models\Key;
 use App\Models\Marina;
 use App\Models\MarinaStaff;
+use App\Models\Tide;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -118,6 +119,16 @@ class DemoSeeder extends Seeder
             'leg' => 'B',
             'berth_number' => 25
         ]);
+
+        Tide::factory(4)
+            ->sequence(
+                ['tide_at' => now(), 'height' => '100', 'type' => 'LOW'],
+                ['tide_at' => now()->addHours(6), 'height' => '800', 'type' => 'HIGH'],
+                ['tide_at' => now()->addHours(12), 'height' => '120', 'type' => 'LOW'],
+                ['tide_at' => now()->addHours(18), 'height' => '810', 'type' => 'HIGH'],
+            )
+            ->for($marina)
+            ->create();
 
 
         User::factory()

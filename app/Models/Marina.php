@@ -48,4 +48,9 @@ class Marina extends Model
         return $this->hasMany(Invoice::class);
     }
 
+    public function tides(): HasMany
+    {
+        return $this->hasMany(Tide::class);
+    }
+
 }
