@@ -22,5 +22,10 @@ class BoatYard extends Model
         return $this->hasMany(BoatYardService::class);
     }
 
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
 }
 

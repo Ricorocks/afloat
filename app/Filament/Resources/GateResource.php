@@ -19,7 +19,7 @@ class GateResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
 
-    protected static ?string $navigationGroup = 'Gates';
+    protected static ?string $navigationGroup = 'Gates & Tides';
 
     public static function form(Form $form): Form
     {
