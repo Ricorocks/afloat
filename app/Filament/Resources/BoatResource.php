@@ -17,7 +17,9 @@ class BoatResource extends Resource
 {
     protected static ?string $model = Boat::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-support';
+
+    protected static ?string $navigationGroup = 'Users';
 
     public static function form(Form $form): Form
     {

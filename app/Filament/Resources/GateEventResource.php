@@ -19,7 +19,7 @@ class GateEventResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
 
-    protected static ?string $navigationGroup = 'Gates';
+    protected static ?string $navigationGroup = 'Gates & Tides';
 
     public static function form(Form $form): Form
     {

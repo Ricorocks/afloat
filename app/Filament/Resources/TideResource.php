@@ -17,7 +17,9 @@ class TideResource extends Resource
 {
     protected static ?string $model = Tide::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-flag';
+
+    protected static ?string $navigationGroup = 'Gates & Tides';
 
     public static function form(Form $form): Form
     {
