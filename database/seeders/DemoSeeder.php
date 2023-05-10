@@ -126,6 +126,11 @@ class DemoSeeder extends Seeder
                 ['tide_at' => now()->addHours(6), 'height' => '800', 'type' => 'HIGH'],
                 ['tide_at' => now()->addHours(12), 'height' => '120', 'type' => 'LOW'],
                 ['tide_at' => now()->addHours(18), 'height' => '810', 'type' => 'HIGH'],
+                ['tide_at' => now()->addHours(23), 'height' => '113', 'type' => 'LOW'],
+                ['tide_at' => now()->addHours(29), 'height' => '814', 'type' => 'HIGH'],
+                ['tide_at' => now()->addHours(34), 'height' => '119', 'type' => 'LOW'],
+                ['tide_at' => now()->addHours(40), 'height' => '817', 'type' => 'HIGH'],
+                ['tide_at' => now()->addHours(46), 'height' => '103', 'type' => 'LOW'],
             )
             ->for($marina)
             ->create();

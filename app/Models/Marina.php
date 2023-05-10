@@ -13,6 +13,17 @@ class Marina extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public function getNextEventsAttribute()
+    {
+        $tides = $this->tides()
+            ->whereDate('tide_at', '>', now())
+            ->orderBy('tide_at')
+            ->limit(8);
+        // $gateEvents = (all gate events and name, dates as above)
+        // return combination in date order
+        // Event Type (gate or tide) | Event Date Time | Event Name (High, Low, Lowered, Raised) | Gate Name or Null
+    }
+
     public function berths(): HasMany
     {
         return $this->hasMany(Berth::class);
