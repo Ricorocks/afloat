@@ -22,5 +22,4 @@ class Gate extends Model
     {
         return $this->hasMany(GateEvent::class);
     }
-
 }

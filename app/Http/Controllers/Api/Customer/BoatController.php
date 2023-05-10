@@ -15,6 +15,7 @@ class BoatController extends Controller
             'marina.keys' => fn ($query) => $query->where('user_id', $request->user()->id)
         ])
         ->get();
+
         return BoatResource::collection($boats);
     }
 }
