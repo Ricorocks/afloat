@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Marina extends Model
 {
@@ -57,6 +58,11 @@ class Marina extends Model
     public function invoices(): HasMany
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function currentMarinaStaff(): HasMany
+    {
+        return $this->hasMany(MarinaStaff::class, 'current_marina');
     }
 
     public function tides(): HasMany

@@ -85,4 +85,9 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(BerthContract::class);
     }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }
