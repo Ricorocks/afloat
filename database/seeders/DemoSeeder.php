@@ -174,16 +174,17 @@ class DemoSeeder extends Seeder
                 'berth_number' => '12',
             ]);
             
-            $berthRateToBook = BerthBookingRate::factory()
-                ->create([
-                    'name' => 'Standard Overnight Rate',
-                    'starts_at' => now()->subMonths(3),
-                ]);
+            $berthRateToBook = BerthBookingRate::factory(2)
+                ->sequence(
+                    ['name' => 'Standard Overnight Rate', 'starts_at' => now()->subMonths(3)],
+                    ['name' => 'Late Overnight Rate', 'starts_at' => now()->subMonths(3)]
+                )
+                ->create();
 
             $userToBook = User::all()->first();
 
             $booking = BerthBooking::factory()
-                ->for($berthRateToBook)
+                ->for($berthRateToBook->first())
                 ->for($berthToBook)
                 ->for($userToBook)
                 ->for($userToBook->boats->first())
