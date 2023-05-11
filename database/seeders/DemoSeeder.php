@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\Berth;
+use App\Models\BerthBooking;
+use App\Models\BerthBookingRate;
 use App\Models\BerthContract;
 use App\Models\Boat;
 use App\Models\BoatYard;
@@ -163,5 +165,32 @@ class DemoSeeder extends Seeder
                            ->values()
                 )
             );
+
+
+            // Make a Booking
+            $berthToBook = Berth::factory()->for($marina)->create([
+                'internal_id' => 'Book Test Berth',
+                'leg' => 'A',
+                'berth_number' => '12',
+            ]);
+            
+            $berthRateToBook = BerthBookingRate::factory()
+                ->create([
+                    'name' => 'Standard Overnight Rate',
+                    'starts_at' => now()->subMonths(3),
+                ]);
+
+            $userToBook = User::all()->first();
+
+            $booking = BerthBooking::factory()
+                ->for($berthRateToBook)
+                ->for($berthToBook)
+                ->for($userToBook)
+                ->for($userToBook->boats->first())
+                ->create([
+                    'booked_at' => now()->subDays(45),
+                    'starts_at' => now()->addDays(15),
+                    'ends_at' => now()->addDays(22),
+                ]);
     }
 }
