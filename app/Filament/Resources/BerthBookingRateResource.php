@@ -48,10 +48,6 @@ class BerthBookingRateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('starts_at')
                     ->date(),
@@ -62,8 +58,6 @@ class BerthBookingRateResource extends Resource
                 Tables\Columns\TextColumn::make('day_rate_per_meter'),
                 Tables\Columns\TextColumn::make('currency'),
                 Tables\Columns\TextColumn::make('marina.name'),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
