@@ -19,7 +19,6 @@ return new class extends Migration
         Schema::create('berth_bookings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->dateTime('booked_at');
             $table->date('starts_at');
             $table->date('ends_at');
             $table->foreignIdFor(Berth::class);

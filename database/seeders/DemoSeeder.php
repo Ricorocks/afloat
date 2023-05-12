@@ -179,6 +179,7 @@ class DemoSeeder extends Seeder
                     ['name' => 'Standard Overnight Rate', 'starts_at' => now()->subMonths(3)],
                     ['name' => 'Late Overnight Rate', 'starts_at' => now()->subMonths(3)]
                 )
+                ->for($marina)
                 ->create();
 
             $userToBook = User::all()->first();
@@ -189,7 +190,7 @@ class DemoSeeder extends Seeder
                 ->for($userToBook)
                 ->for($userToBook->boats->first())
                 ->create([
-                    'booked_at' => now()->subDays(45),
+                    'created_at' => now()->subDays(45),
                     'starts_at' => now()->addDays(15),
                     'ends_at' => now()->addDays(22),
                 ]);

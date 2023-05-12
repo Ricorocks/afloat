@@ -22,7 +22,6 @@ class BerthBookingFactory extends Factory
     public function definition(): array
     {
         return [
-            'booked_at' => now(),
             'starts_at' => now()->addDays(60),
             'ends_at' => now()->addDays(67),
             'berth_id' => Berth::factory(),

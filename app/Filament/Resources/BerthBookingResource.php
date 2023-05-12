@@ -4,7 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BerthBookingResource\Pages;
 use App\Filament\Resources\BerthBookingResource\RelationManagers;
+use App\Models\Berth;
 use App\Models\BerthBooking;
+use App\Models\BerthBookingRate;
+use App\Models\Boat;
+use App\Models\Marina;
+use Closure;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -25,22 +30,34 @@ class BerthBookingResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\DateTimePicker::make('booked_at')
-                    ->required(),
                 Forms\Components\DatePicker::make('starts_at')
                     ->required(),
                 Forms\Components\DatePicker::make('ends_at')
                     ->required(),
+                Forms\Components\Select::make('marina')
+                    ->options(
+                        fn (Closure $get) => Marina::all()->pluck('name', 'id')
+                    )
+                    ->required()
+                    ->reactive(),
                 Forms\Components\Select::make('berth_id')
-                    ->relationship('berth', 'id')
+                    ->options(
+                        fn (Closure $get) => Berth::where('marina_id', $get('marina'))->pluck('berth_number', 'id')
+                    )
+                    ->required(),
+                Forms\Components\Select::make('berth_booking_rate_id')
+                    ->options(
+                        fn (Closure $get) => BerthBookingRate::where('marina_id', $get('marina'))->pluck('name', 'id')
+                    )
                     ->required(),
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
-                    ->required(),
+                    ->required()
+                    ->reactive(),
                 Forms\Components\Select::make('boat_id')
-                    ->relationship('boat', 'name'),
-                Forms\Components\Select::make('berth_booking_rate_id')
-                    ->relationship('berthBookingRate', 'name'),
+                    ->options(
+                        fn (Closure $get) => Boat::where('user_id', $get('user_id'))->pluck('name', 'id')
+                    ),
                 Forms\Components\Select::make('invoice_item_id')
                     ->relationship('invoiceItem', 'name'),
             ]);
@@ -53,8 +70,6 @@ class BerthBookingResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('booked_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('starts_at')
                     ->date(),
@@ -72,6 +87,7 @@ class BerthBookingResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -94,6 +110,7 @@ class BerthBookingResource extends Resource
             'index' => Pages\ListBerthBookings::route('/'),
             'create' => Pages\CreateBerthBooking::route('/create'),
             'edit' => Pages\EditBerthBooking::route('/{record}/edit'),
+            'view' => Pages\ViewBerthBooking::route('/{record}'),
         ];
     }    
     

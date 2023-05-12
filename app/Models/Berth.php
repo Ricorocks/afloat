@@ -21,7 +21,7 @@ class Berth extends Model
 
     public function getActiveContractAttribute(): bool
     {
-        return $this->berthContracts->count() > 0 ? true : false;
+        return $this->berthContracts->count() > 0 ? true : false; 
     }
 
     public function getLocationAttribute(): string

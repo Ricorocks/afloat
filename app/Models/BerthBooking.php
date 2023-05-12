@@ -16,6 +16,11 @@ class BerthBooking extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'starts_at', 'ends_at', 'berth_id', 
+        'user_id', 'boat_id', 'booking_rate_id'
+    ];
+
     public function berth(): BelongsTo
     {
         return $this->belongsTo(Berth::class);
