@@ -80,8 +80,16 @@ class BerthBookingResource extends Resource
                 Tables\Columns\TextColumn::make('boat.name'),
                 Tables\Columns\TextColumn::make('berthBookingRate.name'),
                 Tables\Columns\TextColumn::make('invoiceItem.name'),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                Tables\Columns\IconColumn::make('confirmed')
+                    ->options([
+                        'heroicon-o-x-circle' => false,
+                        'heroicon-o-check-circle' => true,
+                    ])
+                    ->colors([
+                        'warning' => false,
+                        'success' => true,
+                    ])
+                    ->label('Confirmed'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

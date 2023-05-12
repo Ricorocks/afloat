@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->date('starts_at');
             $table->date('ends_at');
+            $table->date('confirmed_at')->default(now())->nullable();
             $table->foreignIdFor(Berth::class);
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Boat::class)->nullable();

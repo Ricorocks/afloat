@@ -18,8 +18,14 @@ class BerthBooking extends Model
 
     protected $fillable = [
         'starts_at', 'ends_at', 'berth_id', 
-        'user_id', 'boat_id', 'booking_rate_id'
+        'user_id', 'boat_id', 'booking_rate_id',
+        'confirmed_at'
     ];
+
+    public function getConfirmedAttribute(): bool
+    {
+        return $this->confirmed_at == null ? false : true;
+    }
 
     public function berth(): BelongsTo
     {
