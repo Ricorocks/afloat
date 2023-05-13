@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\Berth;
+use App\Models\BerthBooking;
+use App\Models\BerthBookingRate;
 use App\Models\BerthContract;
 use App\Models\Boat;
 use App\Models\BoatYard;
@@ -126,6 +128,11 @@ class DemoSeeder extends Seeder
                 ['tide_at' => now()->addHours(6), 'height' => '800', 'type' => 'HIGH'],
                 ['tide_at' => now()->addHours(12), 'height' => '120', 'type' => 'LOW'],
                 ['tide_at' => now()->addHours(18), 'height' => '810', 'type' => 'HIGH'],
+                ['tide_at' => now()->addHours(23), 'height' => '113', 'type' => 'LOW'],
+                ['tide_at' => now()->addHours(29), 'height' => '814', 'type' => 'HIGH'],
+                ['tide_at' => now()->addHours(34), 'height' => '119', 'type' => 'LOW'],
+                ['tide_at' => now()->addHours(40), 'height' => '817', 'type' => 'HIGH'],
+                ['tide_at' => now()->addHours(46), 'height' => '103', 'type' => 'LOW'],
             )
             ->for($marina)
             ->create();
@@ -149,7 +156,7 @@ class DemoSeeder extends Seeder
                 ]);
 
                 // Add an invoice or two
-                Invoice::factory()->has(InvoiceItem::factory(2))->create();
+                Invoice::factory()->for($user)->has(InvoiceItem::factory(2))->create();
             })
             ->create(
                 new Sequence(
@@ -158,5 +165,34 @@ class DemoSeeder extends Seeder
                            ->values()
                 )
             );
+
+
+            // Make a Booking
+            $berthToBook = Berth::factory()->for($marina)->create([
+                'internal_id' => 'Book Test Berth',
+                'leg' => 'A',
+                'berth_number' => '12',
+            ]);
+            
+            $berthRateToBook = BerthBookingRate::factory(2)
+                ->sequence(
+                    ['name' => 'Standard Overnight Rate', 'starts_at' => now()->subMonths(3)],
+                    ['name' => 'Late Overnight Rate', 'starts_at' => now()->subMonths(3)]
+                )
+                ->for($marina)
+                ->create();
+
+            $userToBook = User::all()->first();
+
+            $booking = BerthBooking::factory()
+                ->for($berthRateToBook->first())
+                ->for($berthToBook)
+                ->for($userToBook)
+                ->for($userToBook->boats->first())
+                ->create([
+                    'created_at' => now()->subDays(45),
+                    'starts_at' => now()->addDays(15),
+                    'ends_at' => now()->addDays(22),
+                ]);
     }
 }

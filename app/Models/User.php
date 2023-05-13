@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Filament\Models\Contracts\FilamentUser;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -60,6 +61,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function canAccessFilament(): bool
+    {
+        return true;
+    }
 
     public function boats(): HasMany
     {
@@ -79,5 +84,10 @@ class User extends Authenticatable
     public function berthContracts(): HasMany
     {
         return $this->hasMany(BerthContract::class);
+    }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
     }
 }

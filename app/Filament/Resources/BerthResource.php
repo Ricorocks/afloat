@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -52,25 +53,29 @@ class BerthResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('leg'),
-                Tables\Columns\TextColumn::make('berth_number'),
+                Tables\Columns\TextColumn::make('location'),
                 Tables\Columns\TextColumn::make('internal_id'),
-                Tables\Columns\TextColumn::make('max_length_in_cm'),
-                Tables\Columns\TextColumn::make('max_width_in_cm'),
-                Tables\Columns\TextColumn::make('max_draught_in_cm'),
-                Tables\Columns\TextColumn::make('overlay_x'),
-                Tables\Columns\TextColumn::make('overlay_y'),
-                Tables\Columns\TextColumn::make('overlay_rotate'),
+                Tables\Columns\TextColumn::make('max_length_in_cm')
+                    ->label('Max length'),
+                Tables\Columns\TextColumn::make('max_width_in_cm')
+                    ->label('Max width'),
+                Tables\Columns\TextColumn::make('max_draught_in_cm')
+                    ->label('Max draught'),
                 Tables\Columns\TextColumn::make('marina.name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                Tables\Columns\IconColumn::make('activeContract')
+                    ->options([
+                        'heroicon-o-x-circle' => false,
+                        'heroicon-o-check-circle' => true,
+                    ])
+                    ->colors([
+                        'warning' => false,
+                        'success' => true,
+                    ]),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
+                SelectFilter::make('marina')
+                    ->relationship('marina', 'name'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

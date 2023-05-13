@@ -28,6 +28,7 @@ class InvoiceResource extends Resource
                 Forms\Components\DateTimePicker::make('issued_at')
                     ->required(),
                 Forms\Components\DateTimePicker::make('cancelled_at'),
+                Forms\Components\DateTimePicker::make('paid_at'),
                 Forms\Components\DatePicker::make('due_at'),
                 Forms\Components\Select::make('marina_id')
                     ->relationship('marina', 'name')
@@ -58,6 +59,8 @@ class InvoiceResource extends Resource
                     return $record->sumWithVat;
                 })->money('GBP'),
                 Tables\Columns\TextColumn::make('issued_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('paid_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('cancelled_at')
                     ->dateTime(),

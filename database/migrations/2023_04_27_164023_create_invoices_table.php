@@ -22,6 +22,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('issued_at')->default(now());
             $table->dateTime('cancelled_at')->nullable();
+            $table->dateTime('paid_at')->nullable();
             $table->date('due_at')->nullable();
             $table->foreignIdFor(Marina::class);
             $table->foreignIdFor(MarinaStaff::class);
