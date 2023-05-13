@@ -2,15 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\Invoice\Status;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Invoice extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $casts = [
+        'status' => Status::class,
+    ];
+
+    public function subtotal(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->invoiceItems->sum('sumAmountWithoutVat')
+        );
+    }
+
+    public function vatAmount(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->invoiceItems->sum('sumAmountWithVat') - $this->invoiceItems->sum('sumAmountWithoutVat')
+        );
+    }
 
     public function getSumWithoutVatAttribute()
     {

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Customer\BoatController;
 use App\Http\Controllers\Api\Customer\MarinaController;
+use App\Http\Controllers\Api\Customer\InvoiceController;
+use App\Http\Controllers\Api\Customer\DashboardController;
 
 Route::get('marinas', [MarinaController::class, 'index']);
 Route::get('marinas/{marina}', [MarinaController::class, 'show']);
@@ -25,7 +27,10 @@ Route::prefix('customers/')->group(function() {
             return $request->user();
         });
 
+        Route::get('dashboard', DashboardController::class);
         Route::get('boats', [BoatController::class, 'index']);
+        Route::get('invoices', [InvoiceController::class, 'index']);
+        Route::get('invoices/{invoice}', [InvoiceController::class, 'show']);
     });
 });
 

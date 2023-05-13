@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Address\Type;
+use App\Models\Address;
 use App\Models\Admin;
 use App\Models\Berth;
 use App\Models\BerthBooking;
@@ -46,6 +48,7 @@ class DemoSeeder extends Seeder
                     'overlay_rotate' => 0
                 ]
             )))
+            ->has(Address::factory(['type' => Type::Location]), 'address')
             ->has(Gate::factory())
             ->count(3)
             ->create();
@@ -65,9 +68,10 @@ class DemoSeeder extends Seeder
 
         $marina = Marina::factory()
             ->has($boatyard = BoatYard::factory()->has(BoatYardService::factory(2)))
+            ->has(Address::factory(['type' => Type::Location]), 'address')
             ->has(Gate::factory()->has(
                 GateEvent::factory()
-                    ->count(10)
+                    ->count(50)
                     ->state(new Sequence(
                         fn ($sequence) => [
                             'label' => $sequence->index  % 2 == 0 ? 'lowered' : 'raised',
@@ -143,6 +147,8 @@ class DemoSeeder extends Seeder
                 'richard@ricorocks.agency' => 'Richard Plant',
                 'eluert@ricorocks.agency' => 'Eluert Mukja',
             ]))
+            ->has(Address::factory(['type' => Type::Location]), 'address')
+            ->has(Address::factory(['type' => Type::Billing]), 'billingAddress')
             ->has(Boat::factory()->for($marina))
             ->has(Vehicle::factory()->count(2))
             ->afterCreating(function (User $user) use($marina) {
@@ -156,7 +162,12 @@ class DemoSeeder extends Seeder
                 ]);
 
                 // Add an invoice or two
-                Invoice::factory()->for($user)->has(InvoiceItem::factory(2))->create();
+                Invoice::factory()
+                    ->for($marina)
+                    ->times(rand(2, 5))
+                    ->for($user)
+                    ->has(InvoiceItem::factory(rand(1, 5)))
+                    ->create();
             })
             ->create(
                 new Sequence(
@@ -173,7 +184,7 @@ class DemoSeeder extends Seeder
                 'leg' => 'A',
                 'berth_number' => '12',
             ]);
-            
+
             $berthRateToBook = BerthBookingRate::factory(2)
                 ->sequence(
                     ['name' => 'Standard Overnight Rate', 'starts_at' => now()->subMonths(3)],

@@ -23,7 +23,7 @@ class MarinaResource extends JsonResource
             'country' => $this->country,
             'phone_number' => $this->phone_number,
             'website' => $this->website,
-            'vfh_channel' => $this->vfh_channel,
+            'vhf_channel' => $this->vhf_channel,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'gates' => GateResource::collection($this->whenLoaded('gates')),

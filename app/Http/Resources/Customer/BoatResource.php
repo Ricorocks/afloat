@@ -4,6 +4,7 @@ namespace App\Http\Resources\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\MarinaResource;
+use App\Http\Resources\BerthContractResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BoatResource extends JsonResource
@@ -22,6 +23,7 @@ class BoatResource extends JsonResource
             'insurance_number' => $this->insurance_number,
             'user' => UserResource::make($this->whenLoaded('user')),
             'marina' => MarinaResource::make($this->whenLoaded('marina')),
+            'berth_contracts' => BerthContractResource::collection($this->whenLoaded('berthContracts')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
