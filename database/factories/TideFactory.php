@@ -17,7 +17,11 @@ class TideFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'height' => fake()->numberBetween(200, 850),
+            'tide_at' => fake()->date(),
+            'type' => fake()->randomElement([
+                'high', 'low'
+            ])
         ];
     }
 }

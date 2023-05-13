@@ -14,6 +14,12 @@ class Marina extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'name', 'address_line_1', 'address_line_2', 'city', 'county',
+        'postcode', 'country', 'phone_number', 'website', 'email', 'vhf_channel',
+        'lattitude', 'longitude'
+    ];
+
     public function getNextEventsAttribute()
     {
         $tides = $this->tides()
@@ -47,7 +53,7 @@ class Marina extends Model
 
     public function boats(): HasMany
     {
-        return $this->hasMany(Boats::class);
+        return $this->hasMany(Boat::class);
     }
 
     public function boatYard(): HasOne
