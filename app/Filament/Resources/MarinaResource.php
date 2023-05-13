@@ -96,6 +96,7 @@ class MarinaResource extends Resource
         return [
             RelationManagers\GatesRelationManager::class,
             RelationManagers\BoatYardRelationManager::class,
+            RelationManagers\CurrentMarinaRelationManager::class,
         ];
     }
     
