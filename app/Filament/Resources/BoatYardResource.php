@@ -17,7 +17,9 @@ class BoatYardResource extends Resource
 {
     protected static ?string $model = BoatYard::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-exclamation';
+
+    protected static ?string $navigationGroup = 'Marina Admin';
 
     public static function form(Form $form): Form
     {

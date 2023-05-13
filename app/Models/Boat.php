@@ -31,4 +31,9 @@ class Boat extends Model
     {
         return $this->belongsTo(Marina::class);
     }
+
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }
