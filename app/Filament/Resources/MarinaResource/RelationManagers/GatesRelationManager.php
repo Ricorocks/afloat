@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\MarinaResource\RelationManagers;
 
+use App\Filament\Resources\GateResource;
+use App\Models\Gate;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -39,7 +41,8 @@ class GatesRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->url(fn (Gate $record): string => GateResource::getUrl('edit', $record)),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

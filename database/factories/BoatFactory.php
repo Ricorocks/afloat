@@ -25,6 +25,9 @@ class BoatFactory extends Factory
             'length_in_cm' => fake()->numberBetween(800, 1400),
             'width_in_cm' => fake()->numberBetween(300, 500),
             'draught_in_cm' => fake()->numberBetween(200, 300),
+            'type' => fake()->randomElement([
+                'Sail', 'Motor',
+            ]),
             'user_id' => User::factory(),
             'marina_id' => Marina::factory(),
         ];

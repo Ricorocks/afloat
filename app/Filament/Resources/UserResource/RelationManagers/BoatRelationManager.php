@@ -40,7 +40,7 @@ class BoatRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\Action::make('View')
+                Tables\Actions\Action::make('Edit')
                     ->url(fn (Boat $record): string => route('filament.resources.boats.edit', $record))
             ])
             ->bulkActions([
