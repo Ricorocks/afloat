@@ -84,11 +84,11 @@ class MarinaModelTest extends TestCase
     /** @test */
     public function it_can_have_many_current_staff()
     {
-        // $marina = Marina::factory()
-        //     ->has(MarinaStaff::factory()->count(3))
-        //     ->create();
-        // $this->assertInstanceOf(HasMany::class, $marina->currentMarinaStaff());
-        // $this->assertCount(3, $marina->currentMarinaStaff);
+        $marina = Marina::factory()
+            ->has(MarinaStaff::factory()->count(3), 'currentMarinaStaff')
+            ->create();
+        $this->assertInstanceOf(HasMany::class, $marina->currentMarinaStaff());
+        $this->assertCount(3, $marina->currentMarinaStaff);
     }
 
     /** @test */
