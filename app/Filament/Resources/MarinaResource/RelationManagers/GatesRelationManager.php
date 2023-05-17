@@ -33,6 +33,9 @@ class GatesRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('location'),
+                Tables\Columns\TextColumn::make('nextEventLabel')
+                    ->label('Next Event'),
             ])
             ->filters([
                 //

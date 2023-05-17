@@ -21,7 +21,8 @@ class MarinaStaffFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->email(),
             'password' => fake()->password(),
-            'current_marina' => Marina::factory()
+            'current_marina' => Marina::factory(),
+            'telephone' => fake()->phoneNumber(),
         ];
     }
 }
