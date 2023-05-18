@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\HasAddress;
 use Filament\Models\Contracts\FilamentUser;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -19,6 +20,7 @@ class User extends Authenticatable implements FilamentUser
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasAddress;
 
     /**
      * The attributes that are mass assignable.

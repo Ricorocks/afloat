@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\Invoice\Status;
 use App\Filament\Resources\InvoiceResource\Pages;
 use App\Filament\Resources\InvoiceResource\RelationManagers;
 use App\Models\Invoice;
@@ -66,6 +67,21 @@ class InvoiceResource extends Resource
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('due_at')
                     ->date(),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->enum([
+                        Status::Draft->value => 'Draft',
+                        Status::Open->value => 'Open',
+                        Status::Paid->value => 'Paid',
+                        Status::Void->value => 'Void',
+                        Status::Uncollectible->value => 'Uncollectible',
+                    ])
+                    ->colors([
+                        'secondary' => Status::Draft->value,
+                        'primary' => Status::Open->value,
+                        'success' => Status::Paid->value,
+                        'secondary' => Status::Void->value,
+                        'danger' => Status::Uncollectible->value,
+                    ]),
                 Tables\Columns\TextColumn::make('marina.name'),
                 Tables\Columns\TextColumn::make('marinaStaff.name'),
                 Tables\Columns\TextColumn::make('user.name'),
@@ -88,14 +104,14 @@ class InvoiceResource extends Resource
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             RelationManagers\InvoiceItemsRelationManager::class
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -103,8 +119,8 @@ class InvoiceResource extends Resource
             'create' => Pages\CreateInvoice::route('/create'),
             'edit' => Pages\EditInvoice::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

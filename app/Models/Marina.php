@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
+use App\Concerns\HasAddress;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
 
 class Marina extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasAddress;
 
     protected $fillable = [
         'name', 'address_line_1', 'address_line_2', 'city', 'county',
@@ -30,7 +30,7 @@ class Marina extends Model
         // return combination in date order
         // Event Type (gate or tide) | Event Date Time | Event Name (High, Low, Lowered, Raised) | Gate Name or Null
     }
-
+    
     public function berths(): HasMany
     {
         return $this->hasMany(Berth::class);
