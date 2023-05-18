@@ -44,8 +44,9 @@ class BoatYardRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\EditAction::make()
                     ->url(fn (BoatYard $record): string => BoatYardResource::getUrl('edit', $record)),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
+                //Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn (BoatYard $record): string => BoatYardResource::getUrl('view', $record)),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

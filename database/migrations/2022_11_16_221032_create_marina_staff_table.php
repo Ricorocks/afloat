@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('telephone')->nullable();
+            $table->string('language')->default('en_EN');
             $table->foreignIdFor(Marina::class, 'current_marina');
             $table->rememberToken();
             $table->softDeletes();

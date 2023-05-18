@@ -46,7 +46,9 @@ class GatesRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\EditAction::make()
                     ->url(fn (Gate $record): string => GateResource::getUrl('edit', $record)),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn (Gate $record): string => GateResource::getUrl('view', $record)),
+                //Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

@@ -23,8 +23,10 @@ class MarinaStaff extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
-        'current_marina'
+        'current_marina',
+        'language',
     ];
 
     /**

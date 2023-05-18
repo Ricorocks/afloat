@@ -51,34 +51,27 @@ class VehicleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('registration'),
-                Tables\Columns\TextColumn::make('vin'),
                 Tables\Columns\TextColumn::make('color'),
                 Tables\Columns\TextColumn::make('make'),
                 Tables\Columns\TextColumn::make('model'),
                 Tables\Columns\TextColumn::make('fuel_type'),
-                Tables\Columns\TextColumn::make('primary_image_url'),
-                Tables\Columns\TextColumn::make('co2_emissions'),
-                Tables\Columns\TextColumn::make('engine_capacity'),
-                Tables\Columns\TextColumn::make('registered_on')
-                    ->date(),
-                Tables\Columns\TextColumn::make('mot_due_on')
-                    ->date(),
-                Tables\Columns\TextColumn::make('tax_due_on')
-                    ->date(),
                 Tables\Columns\TextColumn::make('insurance_renews_on')
                     ->date(),
-                Tables\Columns\TextColumn::make('congestion_charge_renews_on')
-                    ->date(),
                 Tables\Columns\TextColumn::make('user.name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('make')->options(
+                    Vehicle::all()->unique('make')
+                        ->sortBy('make')
+                        ->pluck('make', 'make')
+                ),
+                Tables\Filters\SelectFilter::make('fuel_type')->options(
+                    Vehicle::all()->unique('fuel_type')
+                        ->sortBy('fuel_type')
+                        ->pluck('fuel_type', 'fuel_type')
+                ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

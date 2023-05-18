@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MarinaStaffResource\Pages;
 use App\Filament\Resources\MarinaStaffResource\RelationManagers;
+use App\Models\Marina;
 use App\Models\MarinaStaff;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class MarinaStaffResource extends Resource
 {
@@ -34,10 +36,16 @@ class MarinaStaffResource extends Resource
                     ->email()
                     ->required(),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
+                Forms\Components\TextInput::make('language'),
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->required(),
-                Forms\Components\TextInput::make('current_marina')
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn (string $context): bool => $context === 'create'),
+                Forms\Components\Select::make('current_marina')
+                    ->options(
+                        Marina::all()->sortBy('name')->pluck('name', 'id')
+                    )
                     ->required(),
             ]);
     }
@@ -46,12 +54,14 @@ class MarinaStaffResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('currentMarina.name'),
+                Tables\Columns\TextColumn::make('name')->translateLabel(),
+                Tables\Columns\TextColumn::make('email')->translateLabel(),
+                Tables\Columns\TextColumn::make('currentMarina.name')->translateLabel(),
+                Tables\Columns\TextColumn::make('language')->translateLabel(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Last Updated')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->translateLabel(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

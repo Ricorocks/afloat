@@ -12,6 +12,10 @@ class BoatYard extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'name', 'telephone_number', 'marina_id'
+    ];
+
     public function marina(): BelongsTo
     {
         return $this->belongsTo(Marina::class);

@@ -15,6 +15,10 @@ class Gate extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'name', 'location', 'marina_id'
+    ];
+
     public function getNextEventLabelAttribute()
     {
         $event = $this->gateEvents()
