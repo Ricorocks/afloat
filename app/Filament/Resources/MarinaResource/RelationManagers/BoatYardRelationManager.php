@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\MarinaResource\RelationManagers;
 
+use App\Filament\Resources\BoatYardResource;
+use App\Models\BoatYard;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -31,6 +33,7 @@ class BoatYardRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('telephone_number')
             ])
             ->filters([
                 //
@@ -39,9 +42,11 @@ class BoatYardRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->url(fn (BoatYard $record): string => BoatYardResource::getUrl('edit', $record)),
+                //Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn (BoatYard $record): string => BoatYardResource::getUrl('view', $record)),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

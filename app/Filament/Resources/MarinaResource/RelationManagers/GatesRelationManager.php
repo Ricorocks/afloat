@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\MarinaResource\RelationManagers;
 
+use App\Filament\Resources\GateResource;
+use App\Models\Gate;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -31,6 +33,9 @@ class GatesRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('location'),
+                Tables\Columns\TextColumn::make('nextEventLabel')
+                    ->label('Next Event'),
             ])
             ->filters([
                 //
@@ -39,8 +44,11 @@ class GatesRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->url(fn (Gate $record): string => GateResource::getUrl('edit', $record)),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn (Gate $record): string => GateResource::getUrl('view', $record)),
+                //Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

@@ -14,12 +14,14 @@ class Boat extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'length_in_cm', 'width_in_cm', 'draught_in_cm'
+        'name', 'length_in_cm', 'width_in_cm', 'draught_in_cm',
+        'type', 'date_of_construction', 'insurance_number',
+        'user_id', 'marina_id'
     ];
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function berthContracts(): HasMany

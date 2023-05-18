@@ -22,6 +22,8 @@ class MarinaResource extends Resource
 
     protected static ?string $navigationGroup = 'Marina Admin';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -78,6 +80,11 @@ class MarinaResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('city')->options(
+                    Marina::all()->unique('city')
+                        ->sortBy('city')
+                        ->pluck('city', 'city')
+                ),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([

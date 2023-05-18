@@ -10,6 +10,10 @@ class Key extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'code', 'marina_id', 'user_id'
+    ];
+
     public function marina(): BelongsTo
     {
         return $this->belongsTo(Marina::class);

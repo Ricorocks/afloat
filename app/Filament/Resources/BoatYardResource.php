@@ -58,6 +58,7 @@ class BoatYardResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -79,6 +80,7 @@ class BoatYardResource extends Resource
             'index' => Pages\ListBoatYards::route('/'),
             'create' => Pages\CreateBoatYard::route('/create'),
             'edit' => Pages\EditBoatYard::route('/{record}/edit'),
+            'view' => Pages\ViewBoatYard::route('/{record}'),
         ];
     }    
     
