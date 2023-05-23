@@ -48,6 +48,11 @@ return [
             'driver' => 'session',
             'provider' => 'marinastaff',
         ],
+        'statamic' => [
+            'driver' => 'session',
+            'provider' => 'statamic',
+        ],
+        
     ],
 
     /*
@@ -80,7 +85,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\MarinaStaff::class,
         ],
-
+        'statamic' => [
+            'driver' => 'statamic',
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

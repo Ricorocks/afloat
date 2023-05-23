@@ -134,7 +134,7 @@ return [
     */
 
     'guards' => [
-        'cp' => 'web',
+        'cp' => 'statamic',
         'web' => 'web',
     ],
 

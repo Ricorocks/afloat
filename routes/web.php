@@ -6,9 +6,9 @@ use App\Http\Controllers\MarinaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware('auth')->group(function() {
     Route::controller(UserController::class)->group(function() {
