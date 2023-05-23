@@ -1,5 +1,5 @@
 title: Pages
-template: pages/show
+template: pages/publicshow
 layout: layouts/public-statamic
 revisions: false
 route: '{slug}'
@@ -14,3 +14,4 @@ preview_targets:
     refresh: true
 structure:
   root: true
+  slugs: true

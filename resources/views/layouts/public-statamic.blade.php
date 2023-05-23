@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-gray-100">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-100">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,11 @@
     </head>
     <body>
         <div class="bg-white">
-        {!! $template_content !!}
+            @include('pages.pagecomponents.header')
+
+            @yield('main')
+
+            @include('pages.pagecomponents.footer')
         </div>
     </body>
 </html>
