@@ -11,7 +11,7 @@
 
     </head>
     <body class="h-full">
-        <main class="relative isolate min-h-full">
+        <main class="relative isolate min-h-full" x-data="{foo:true}" x-init="console.log(foo)">
             <img src="{{ asset('assets/images/open-ocean.jpg') }}" alt="" 
               class="absolute inset-0 -z-10 h-full w-full object-cover object-top">
             <div class="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8 ">

@@ -215,7 +215,7 @@ fields:
                                   type: text
                                   display: 'Feature Point Title'
                                   icon: text
-                                  width: 66
+                                  width: 50
                                   listable: hidden
                                   instructions_position: above
                                   visibility: visible
@@ -226,7 +226,7 @@ fields:
                                   type: icon
                                   display: Icon
                                   icon: icon_picker
-                                  width: 33
+                                  width: 50
                                   listable: hidden
                                   instructions_position: above
                                   visibility: visible
