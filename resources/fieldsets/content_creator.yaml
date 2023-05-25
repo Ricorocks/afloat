@@ -24,7 +24,7 @@ fields:
       allow_source: true
       enable_input_rules: true
       enable_paste_rules: true
-      remove_empty_nodes: false
+      remove_empty_nodes: true
       antlers: false
       link_noopener: false
       link_noreferrer: false
@@ -138,7 +138,59 @@ fields:
               display: Feature
               instructions: null
               icon: null
-              fields: {  }
+              fields:
+                -
+                  handle: pre_title
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: 'Pre Title'
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: title
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: Title
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: screenshot
+                  field:
+                    max_files: 1
+                    mode: list
+                    container: site_assets
+                    restrict: false
+                    allow_uploads: true
+                    show_filename: true
+                    show_set_alt: true
+                    type: assets
+                    display: Screenshot
+                    icon: assets
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: content
+                  field:
+                    antlers: false
+                    type: textarea
+                    display: Content
+                    icon: textarea
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
             testimonial:
               display: Testimonial
               instructions: null
@@ -291,6 +343,47 @@ fields:
                     instructions_position: above
                     visibility: visible
                     hide_display: false
+            phone:
+              display: Phone
+              instructions: null
+              icon: null
+              fields: {  }
+            call_to_action:
+              display: 'Call to Action'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  handle: title
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: Title
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: content
+                  field:
+                    antlers: false
+                    type: textarea
+                    display: Content
+                    icon: textarea
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  import: colour_picker
+                -
+                  import: button
+                  prefix: button_1_
+                -
+                  import: button
+                  prefix: button_2_
       type: bard
       display: 'Content Builder'
       icon: bard

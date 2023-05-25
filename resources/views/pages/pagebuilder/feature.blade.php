@@ -2,14 +2,14 @@
     <div class="mt-32 sm:mt-56">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl sm:text-center">
-            <h2 class="text-base font-semibold leading-7 text-brandblue">Everything you need</h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">No server? No problem.</p>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis.</p>
+            <h2 class="text-base font-semibold leading-7 text-brandblue">{{ $content->pre_title }}</h2>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{ $content->title }}</p>
+            <p class="mt-6 text-lg leading-8 text-gray-600">{{ $content->content }}</p>
           </div>
         </div>
         <div class="relative overflow-hidden pt-16">
           <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <img src="https://tailwindui.com/img/component-images/project-app-screenshot.png" alt="App screenshot" class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10" width="2432" height="1442">
+            <img src="{{ $content->screenshot->url ?? 'https://tailwindui.com/img/component-images/project-app-screenshot.png' }}" alt="App screenshot" class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10" width="2432" height="1442">
             <div class="relative" aria-hidden="true">
               <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
             </div>

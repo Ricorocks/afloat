@@ -3,7 +3,7 @@ id: 9ac71d27-5ff3-4997-8d0f-a697d4cd35fa
 blueprint: page
 title: Welcome
 updated_by: 85dddd73-504a-4ae3-8b99-2095a1abfa09
-updated_at: 1685007025
+updated_at: 1685012225
 content_builder:
   -
     type: set
@@ -36,6 +36,10 @@ content_builder:
       id: li1x4cbz
       values:
         type: feature
+        screenshot: screenshots/marina/afloat-marina-dashboard-temp-screenshot.png
+        pre_title: 'Marina Admin at a Glance'
+        title: 'Boats, Berths, Gates, Tides and Bookings'
+        content: 'Manage your berths and communicate tide times and gate times. Keep your customers up to date with services and invoices.'
   -
     type: set
     attrs:
@@ -52,9 +56,13 @@ content_builder:
   -
     type: set
     attrs:
-      id: li2u7iz7
+      id: li30wj4u
       values:
-        type: pricing
+        type: feature
+        pre_title: 'Captains Data at a Glance'
+        title: 'Boats, Berths, Gates, Tides and Bookings'
+        screenshot: screenshots/customer/afloat-customer-dashboard-temp-screenshot.png
+        content: 'Manage your stay, along with tide times and gate times. See and pay for invoices at participating marinas.'
   -
     type: set
     attrs:
@@ -89,8 +97,6 @@ content_builder:
                 type: new_set
                 faq_question: 'Where Can I do something'
                 faq_answer: 'You can do it here'
-          -
-            type: paragraph
-  -
-    type: paragraph
+logo_type: standard
+logon_type: customer
 ---

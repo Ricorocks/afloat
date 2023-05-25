@@ -9,6 +9,7 @@ fields:
         bg-white: White
         bg-black: Black
         bg-brandgrey: 'Theme Grey'
+        bg-brandwhite: 'Theme White'
       taggable: false
       push_tags: false
       multiple: false
@@ -32,6 +33,7 @@ fields:
         text-white: White
         text-black: Black
         text-brandgrey: 'Theme Grey'
+        text-brandwhite: 'Theme White'
       taggable: false
       push_tags: false
       multiple: false
