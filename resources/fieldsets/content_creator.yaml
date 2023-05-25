@@ -191,6 +191,64 @@ fields:
                     instructions_position: above
                     visibility: visible
                     hide_display: false
+                -
+                  handle: feature_point
+                  field:
+                    collapse: false
+                    previews: true
+                    sets:
+                      new_set_group:
+                        display: 'New Set Group'
+                        instructions: null
+                        icon: null
+                        sets:
+                          new_set:
+                            display: 'New Set'
+                            instructions: null
+                            icon: null
+                            fields:
+                              -
+                                handle: feature_point_title
+                                field:
+                                  input_type: text
+                                  antlers: false
+                                  type: text
+                                  display: 'Feature Point Title'
+                                  icon: text
+                                  width: 66
+                                  listable: hidden
+                                  instructions_position: above
+                                  visibility: visible
+                                  hide_display: false
+                              -
+                                handle: icon
+                                field:
+                                  type: icon
+                                  display: Icon
+                                  icon: icon_picker
+                                  width: 33
+                                  listable: hidden
+                                  instructions_position: above
+                                  visibility: visible
+                                  hide_display: false
+                              -
+                                handle: feature_point_text
+                                field:
+                                  antlers: false
+                                  type: textarea
+                                  display: 'Feature Point Text'
+                                  icon: textarea
+                                  listable: hidden
+                                  instructions_position: above
+                                  visibility: visible
+                                  hide_display: false
+                    type: replicator
+                    display: Feature
+                    icon: replicator
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
             testimonial:
               display: Testimonial
               instructions: null
@@ -347,7 +405,92 @@ fields:
               display: Phone
               instructions: null
               icon: null
-              fields: {  }
+              fields:
+                -
+                  handle: title
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: Title
+                    icon: text
+                    width: 66
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: image
+                  field:
+                    max_files: 1
+                    mode: list
+                    container: site_assets
+                    restrict: false
+                    allow_uploads: true
+                    show_filename: true
+                    show_set_alt: true
+                    type: assets
+                    display: Image
+                    icon: assets
+                    width: 33
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: content
+                  field:
+                    antlers: false
+                    type: textarea
+                    display: Content
+                    icon: textarea
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  import: button
+                  prefix: button_1_
+                -
+                  import: button
+                  prefix: button_2_
+                -
+                  handle: shoutout_text_1
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: 'Shoutout Text 1'
+                    icon: text
+                    width: 33
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: shoutout_text_2
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: 'Shoutout Text 2'
+                    icon: text
+                    width: 33
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: shoutout_link
+                  field:
+                    type: link
+                    display: 'Shoutout Link'
+                    icon: link
+                    width: 33
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
             call_to_action:
               display: 'Call to Action'
               instructions: null

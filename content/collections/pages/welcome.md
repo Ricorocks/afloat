@@ -3,7 +3,7 @@ id: 9ac71d27-5ff3-4997-8d0f-a697d4cd35fa
 blueprint: page
 title: Welcome
 updated_by: 85dddd73-504a-4ae3-8b99-2095a1abfa09
-updated_at: 1685016172
+updated_at: 1685020615
 content_builder:
   -
     type: set
@@ -23,13 +23,13 @@ content_builder:
         button_1background_colour: bg-primary
         button_1foreground_colour: bg-secondary
         button_1_link: 'entry::a52fed08-81c6-4903-9c58-67dff17c2d88'
-        button_1_link_text: 'Learn More'
-        button_1_background_colour: bg-brandblue
-        button_1_foreground_colour: text-brandlightblue
-        button_2_link: 'entry::5ba78ae6-9a37-4050-8d9b-dd59e2df83a6'
-        button_2_link_text: 'Contact Us'
-        button_2_background_colour: bg-brandgrey
-        button_2_foreground_colour: text-brandlightblue
+        button_1_link_text: 'For Sailors'
+        button_1_background_colour: bg-brandwhite
+        button_1_foreground_colour: text-brandblue
+        button_2_link: 'entry::f75c07cf-298f-45c7-9e1f-735c1e78c8ee'
+        button_2_link_text: 'For Marinas'
+        button_2_background_colour: bg-brandwhite
+        button_2_foreground_colour: text-brandblue
   -
     type: set
     attrs:
@@ -40,6 +40,21 @@ content_builder:
         pre_title: 'Marina Admin at a Glance'
         title: 'Boats, Berths, Gates, Tides and Bookings'
         content: 'Manage your berths and communicate tide times and gate times. Keep your customers up to date with services and invoices.'
+        feature_point:
+          -
+            id: li35l8zq
+            icon: arrow-right
+            feature_point_text: 'Blah blah blah.'
+            type: new_set
+            enabled: true
+            feature_point_title: 'This is the title.'
+          -
+            id: li35p86y
+            icon: arrow-right
+            feature_point_title: 'This is more about it.'
+            feature_point_text: 'Oh the things.'
+            type: new_set
+            enabled: true
   -
     type: set
     attrs:
