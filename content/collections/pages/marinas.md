@@ -5,7 +5,7 @@ title: Marinas
 logon_type: marina
 logo_type: standard
 updated_by: 85dddd73-504a-4ae3-8b99-2095a1abfa09
-updated_at: 1685014236
+updated_at: 1685015866
 content_builder:
   -
     type: set
@@ -13,10 +13,11 @@ content_builder:
       id: li30eh24
       values:
         type: hero_header
-        hero_title: Marinas
+        hero_title: 'Marina Management & Revenue Tool'
         background_image: backgrounds/marinabackground2.jpg
-        logo_cloud: false
+        logo_cloud: true
         shorten_header: false
+        hero_content: 'Afloat helps you manage and yield your marina. From managing berth contracts, to selling add-on services, Afloat adds value to increase revenue and provides real value to customers.'
   -
     type: set
     attrs:

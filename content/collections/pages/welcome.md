@@ -3,7 +3,7 @@ id: 9ac71d27-5ff3-4997-8d0f-a697d4cd35fa
 blueprint: page
 title: Welcome
 updated_by: 85dddd73-504a-4ae3-8b99-2095a1abfa09
-updated_at: 1685012225
+updated_at: 1685016172
 content_builder:
   -
     type: set
@@ -11,9 +11,9 @@ content_builder:
       id: li1jqxk9
       values:
         type: hero_header
-        hero_title: 'Marina Management & Revenue Tool'
+        hero_title: 'Afloat - The Tool for Sailors & Marinas'
         hero_content: 'Afloat helps you manage and yield your marina. From managing berth contracts, to selling add-on services, Afloat adds value to increase revenue and provides real value to customers.'
-        background_image: backgrounds/marinabackground2.jpg
+        background_image: backgrounds/boatdeck.jpg
         shorten_header: false
         news_content: 'Investment Open'
         news_link: 'entry::5ba78ae6-9a37-4050-8d9b-dd59e2df83a6'
