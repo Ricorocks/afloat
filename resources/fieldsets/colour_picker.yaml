@@ -1,0 +1,50 @@
+title: 'Colour Picker'
+fields:
+  -
+    handle: background_colour
+    field:
+      options:
+        bg-brandblue: 'Brand Blue'
+        bg-brandlightblue: 'Light Blue'
+        bg-white: White
+        bg-black: Black
+        bg-brandgrey: 'Theme Grey'
+        bg-brandwhite: 'Theme White'
+      taggable: false
+      push_tags: false
+      multiple: false
+      clearable: true
+      searchable: true
+      cast_booleans: false
+      type: select
+      display: 'Background Colour'
+      icon: select
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: foreground_colour
+    field:
+      options:
+        text-brandblue: 'Brand Blue'
+        text-brandlightblue: 'Light Blue'
+        text-white: White
+        text-black: Black
+        text-brandgrey: 'Theme Grey'
+        text-brandwhite: 'Theme White'
+      taggable: false
+      push_tags: false
+      multiple: false
+      clearable: true
+      searchable: true
+      cast_booleans: false
+      type: select
+      display: 'Foreground Colour'
+      icon: select
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
