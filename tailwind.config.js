@@ -11,9 +11,14 @@ module.exports = {
         extend: {
             colors: {
                 danger: colors.rose,
-                primary: colors.blue,
+                primary: colors.sky,
                 success: colors.green,
                 warning: colors.yellow,
+                brandblue: 'rgb(29, 80, 114)', // #1d5072
+                brandlightblue: 'rgb(185, 215, 244)', // #b9d7f4
+                brandgrey: 'rgb(161, 161, 151)', // #a1a197
+                brandwhite: 'rgb(247, 247, 243)', // #f7f7f3
+                // brandwhite option 245, 245, 245  // #f5f5f5
             },
         },
     },

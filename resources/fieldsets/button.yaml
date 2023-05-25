@@ -1,0 +1,28 @@
+title: Button
+fields:
+  -
+    handle: link
+    field:
+      type: link
+      display: Link
+      icon: link
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: link_text
+    field:
+      input_type: text
+      antlers: false
+      type: text
+      display: 'Link Text'
+      icon: text
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    import: colour_picker

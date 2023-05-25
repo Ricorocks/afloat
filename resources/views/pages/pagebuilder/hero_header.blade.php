@@ -10,28 +10,44 @@
             </div>
         </div>
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+            <div class="mx-auto max-w-2xl {{ $content->shorten_header ? 'py-14' : 'py-32 sm:py-48 lg:py-36' }}">
+                @if($content->news_link && $content->news_link)
                 <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                     <div
-                        class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-                        Announcing our next round of funding. <a href="#" class="font-semibold text-white"><span
+                        class="relative rounded-full px-3 py-1 text-sm leading-6 text-white ring-1 ring-white/10 hover:ring-white/20">
+                        {{ $content->news_content }} <a href="{{ $content->news_link }}" class="font-semibold text-white"><span
                                 class="absolute inset-0" aria-hidden="true"></span>Read more <span
                                 aria-hidden="true">&rarr;</span></a>
                     </div>
                 </div>
+                @endif
                 <div class="text-center">
                     <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">{{ $content->hero_title }}</h1>
                     <p class="mt-6 text-lg leading-8 text-white">{{ $content->hero_content }}</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="#"
-                            class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get
-                            started</a>
-                        <a href="#" class="text-sm font-semibold leading-6 text-white">Live demo <span
-                                aria-hidden="true">→</span></a>
+                        @if ($content->button_1_link)
+                            @include('pages.pagecomponents.button', [
+                                'text' => $content->button_1_link_text, 
+                                'link' => $content->button_1_link, 
+                                'background_colour' => $content->button_1_background_colour, 
+                                'foreground_colour' => $content->button_1_foreground_colour
+                                ])
+                        @endif
+                        @if ($content->button_2_link)
+                        {{-- <a href="{{ $content->button_2_link }}" class="text-sm font-semibold leading-6 text-white">{{ $content->button_2_link_text }}<span
+                            aria-hidden="true">→</span></a> --}}
+                            @include('pages.pagecomponents.button', [
+                                'text' => $content->button_2_link_text, 
+                                'link' => $content->button_2_link,
+                                'background_colour' => $content->button_2_background_colour, 
+                                'foreground_colour' => $content->button_2_foreground_colour
+                                ])
+                        @endif
                     </div>
                 </div>
             </div>
 
+            @if($content->logo_cloud)
             <!-- Logo cloud -->
             <div
                 class="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
@@ -51,6 +67,8 @@
                     src="https://tailwindui.com/img/logos/158x48/statamic-logo-white.svg" alt="Statamic" width="158"
                     height="48">
             </div>
+            @endif
+
         </div>
         <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
             aria-hidden="true">

@@ -80,6 +80,217 @@ fields:
                     instructions_position: above
                     visibility: visible
                     hide_display: false
+                -
+                  handle: news_content
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: 'News Content'
+                    icon: text
+                    width: 50
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: news_link
+                  field:
+                    type: link
+                    display: 'News Link'
+                    icon: link
+                    width: 50
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: logo_cloud
+                  field:
+                    default: false
+                    type: toggle
+                    display: 'Logo Cloud'
+                    icon: toggle
+                    width: 33
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: shorten_header
+                  field:
+                    default: false
+                    type: toggle
+                    display: 'Shorten Header'
+                    icon: toggle
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                    width: 33
+                -
+                  import: button
+                  prefix: button_1_
+                -
+                  import: button
+                  prefix: button_2_
+            feature:
+              display: Feature
+              instructions: null
+              icon: null
+              fields: {  }
+            testimonial:
+              display: Testimonial
+              instructions: null
+              icon: null
+              fields:
+                -
+                  handle: content
+                  field:
+                    antlers: false
+                    type: textarea
+                    display: Content
+                    icon: textarea
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: image
+                  field:
+                    mode: list
+                    container: site_assets
+                    restrict: false
+                    allow_uploads: true
+                    show_filename: true
+                    show_set_alt: true
+                    type: assets
+                    display: Image
+                    icon: assets
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                    max_files: 1
+                -
+                  handle: name
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: Name
+                    icon: text
+                    width: 50
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: position
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: Position
+                    icon: text
+                    width: 50
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  import: colour_picker
+                -
+                  handle: swap_columns
+                  field:
+                    default: false
+                    type: toggle
+                    display: 'Swap Columns'
+                    icon: toggle
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+            pricing:
+              display: Pricing
+              instructions: null
+              icon: null
+              fields: {  }
+            faqs:
+              display: FAQs
+              instructions: null
+              icon: null
+              fields:
+                -
+                  handle: faq_list
+                  field:
+                    buttons:
+                      - h2
+                      - h3
+                      - bold
+                      - italic
+                      - unorderedlist
+                      - orderedlist
+                      - removeformat
+                      - quote
+                      - anchor
+                      - image
+                      - table
+                    smart_typography: false
+                    save_html: false
+                    inline: false
+                    toolbar_mode: fixed
+                    reading_time: false
+                    fullscreen: true
+                    allow_source: true
+                    enable_input_rules: true
+                    enable_paste_rules: true
+                    remove_empty_nodes: false
+                    antlers: false
+                    link_noopener: false
+                    link_noreferrer: false
+                    target_blank: false
+                    sets:
+                      faq_item:
+                        display: 'FAQ Item'
+                        instructions: null
+                        icon: null
+                        sets:
+                          new_set:
+                            display: 'New Set'
+                            instructions: null
+                            icon: null
+                            fields:
+                              -
+                                handle: faq_question
+                                field:
+                                  input_type: text
+                                  antlers: false
+                                  type: text
+                                  display: 'FAQ Question'
+                                  icon: text
+                                  listable: hidden
+                                  instructions_position: above
+                                  visibility: visible
+                                  hide_display: false
+                              -
+                                handle: faq_answer
+                                field:
+                                  antlers: false
+                                  type: textarea
+                                  display: 'FAQ Answer'
+                                  icon: textarea
+                                  listable: hidden
+                                  instructions_position: above
+                                  visibility: visible
+                                  hide_display: false
+                    type: bard
+                    display: 'FAQ List'
+                    icon: bard
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
       type: bard
       display: 'Content Builder'
       icon: bard
