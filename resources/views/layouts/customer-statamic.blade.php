@@ -22,7 +22,8 @@
 
         @include('pages.pagecomponents.footer')
     </div>
-    <div class="hidden text-brandblue text-brandlightblue text-brandgrey text-brandwhite "></div>
+    <div class="hidden text-brandblue text-brandlightblue text-brandgrey text-brandwhite 
+    bg-brandblue bg-brandlightblue bg-brandgrey bg-brandwhite"></div>
 </body>
 
 </html>

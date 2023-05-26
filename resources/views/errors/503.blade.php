@@ -1,19 +1,25 @@
-<!doctype html>
-<title>Site Maintenance</title>
-<style>
-  body { text-align: center; padding: 150px; }
-  h1 { font-size: 50px; }
-  body { font: 20px Helvetica, sans-serif; color: #333; }
-  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-  a { color: #dc8100; text-decoration: none; }
-  a:hover { color: #333; text-decoration: none; }
-</style>
 
-<article>
-    <h1>We&rsquo;ll be back soon!</h1>
-    <div>
-        <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.
-         We&rsquo;ll be back online shortly!</p>
-        <p>&mdash; The Afloat Team</p>
-    </div>
-</article>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
+  class="h-full bg-brandblue">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>503 - Down</title>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    </head>
+    <body class="h-full">
+        <main class="relative isolate min-h-full">
+            <img src="{{ asset('assets/images/boatdeck.jpg') }}" alt="" 
+              class="absolute inset-0 -z-10 h-full w-full object-cover object-top">
+            <div class="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8 ">
+              <p class="text-base font-semibold leading-8 text-white">500 - Maintenence</p>
+              <h1 class="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">We&rsquo;ll be back soon!</h1>
+              <p class="mt-4 text-base text-white/70 sm:mt-6">Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.
+                We&rsquo;ll be back online shortly!</p>
+            </div>
+          </main>
+    </body>
+</html>

@@ -5,7 +5,7 @@ title: Marinas
 logon_type: marina
 logo_type: standard
 updated_by: 85dddd73-504a-4ae3-8b99-2095a1abfa09
-updated_at: 1685015866
+updated_at: 1685022209
 content_builder:
   -
     type: set
@@ -21,9 +21,44 @@ content_builder:
   -
     type: set
     attrs:
-      id: li30ztni
+      id: li364u71
       values:
-        type: pricing
+        type: feature
+        pre_title: 'The Marina Admin Solution'
+        title: 'Simple Management From Anywhere'
+        screenshot: screenshots/marina/afloat-marina-dashboard-temp-screenshot.png
+        content: 'Simple Management From Anywhere and info. Simple Management From Anywhere and more. Simple Management From Anywhere yes.'
+  -
+    type: set
+    attrs:
+      id: li362ri3
+      values:
+        type: testimonial
+        content: 'Simplify your marina management with blah. Simplify your marina management with blah. Simplify your marina management with blah. '
+        image: backgrounds/boatsfromabove.jpg
+        background_colour: bg-brandblue
+        foreground_colour: text-brandwhite
+        swap_columns: false
+  -
+    type: set
+    attrs:
+      id: li315cpf
+      values:
+        type: phone
+        title: 'A Powerful, Branded Marina App'
+        content: 'Simple Management From Anywhere and more text. Simple Management From Anywhere and more text. Simple Management From Anywhere and more text. Simple Management From Anywhere and more text. Simple Management From Anywhere and more text. '
+        shoutout_text_1: 'Learn More'
+        shoutout_text_2: 'See App Options'
+        shoutout_link: '#'
+        image: screenshots/app/dummy-mobile-app-screenshot.png
+        button_1_link: '#'
+        button_1_link_text: Download
+        button_2_link: '#'
+        button_2_link_text: 'Learn More'
+        button_1_background_colour: bg-brandblue
+        button_1_foreground_colour: text-brandlightblue
+        button_2_background_colour: bg-brandlightblue
+        button_2_foreground_colour: text-brandblue
   -
     type: set
     attrs:
@@ -45,7 +80,7 @@ content_builder:
   -
     type: set
     attrs:
-      id: li315cpf
+      id: li30ztni
       values:
-        type: phone
+        type: pricing
 ---
