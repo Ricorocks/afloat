@@ -1,3 +1,5 @@
 *
 !public/
+!public/backgrounds/**
+!public/screenshots/**
 !.gitignore
