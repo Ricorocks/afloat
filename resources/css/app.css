@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+[x-cloak] { 
+    display: none !important; 
+} 
+
 body {
     font-family: 'Work Sans', sans-serif;
     @apply text-violet-600
