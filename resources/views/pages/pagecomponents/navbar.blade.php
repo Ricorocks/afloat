@@ -84,7 +84,7 @@
             @foreach(Statamic::tag('nav:marina_customer_main') as $entry)
             <a href="{{ $entry['url']->value() }}"
                 class="text-brandwhite hover:bg-brandlightblue hover:text-brandblue block rounded-md px-3 py-2 text-base font-medium
-                @if($entry['is_parent'] || $entry['is_current']) font-bold bg-gray-900 text-brandwhite  @endif">
+                @if($entry['is_parent'] || $entry['is_current']) font-bold bg-gray-900  @endif">
               {{ $entry['title']->value() }}
             </a>
             @endforeach
