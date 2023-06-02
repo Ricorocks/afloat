@@ -18,15 +18,17 @@
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="block h-8 w-auto lg:hidden" src="{{ asset('assets/logos/afloat/afloat-white.svg') }}" alt="Your Company">
-            <img class="hidden h-8 w-auto lg:block" src="{{ asset('assets/logos/afloat/afloat-white.svg') }}" alt="Your Company">
+            <a href="/">
+                <img class="block h-8 w-auto lg:hidden" src="{{ asset('assets/logos/afloat/afloat-white.svg') }}" alt="Your Company">
+                <img class="hidden h-8 w-auto lg:block" src="{{ asset('assets/logos/afloat/afloat-white.svg') }}" alt="Your Company">
+            </a>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:flex-1 items-center justify-center my-auto">
             <div class="flex space-x-4">
               @foreach(Statamic::tag('nav:marina_customer_main') as $entry)
                 <a href="{{ $entry['url']->value() }}" 
-                    class="text-brandwhite hover:bg-gray-700 hover:text-white rounded-md font-medium px-3 py-2
-                    @if($entry['is_current']) bg-brandblue  @endif">
+                    class="text-brandwhite hover:bg-brandlightblue/[0.8] hover:text-brandblue rounded-md font-medium px-3 py-2
+                    @if($entry['is_current']) bg-brandblue/[0.5]  @endif">
                 {{ $entry['title']->value() }}
                 </a>
               @endforeach
@@ -64,27 +66,29 @@
                 From: "transform opacity-100 scale-100"
                 To: "transform opacity-0 scale-95"
             -->
-            <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+            {{-- <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
                 :class="{ 'hidden': !isProfileOpen }" x-show.transition="true"  x-cloak >
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
     </div>
   
     <div class="sm:hidden" id="mobile-menu" :class="{ 'hidden': !isMainOpen }" x-cloak x-show.transition="true" >
-      <div class="space-y-1 px-2 pb-3 pt-2 ">
-        @foreach(Statamic::tag('nav:marina_customer_main') as $entry)
-        <a href="{{ $entry['url']->value() }}" 
-            class="text-brandwhite hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium
-            @if($entry['is_parent'] || $entry['is_current']) font-bold bg-gray-900 text-white  @endif">
-          {{ $entry['title']->value() }}
-        </a>
-        @endforeach
+      <div class="space-y-1 px-2 pb-3 pt-2 bg-brandblue shadow-lg ">
+        <div class="py-7">
+            @foreach(Statamic::tag('nav:marina_customer_main') as $entry)
+            <a href="{{ $entry['url']->value() }}"
+                class="text-brandwhite hover:bg-brandlightblue hover:text-brandblue block rounded-md px-3 py-2 text-base font-medium
+                @if($entry['is_parent'] || $entry['is_current']) font-bold bg-gray-900 text-brandwhite  @endif">
+              {{ $entry['title']->value() }}
+            </a>
+            @endforeach
+        </div>
 
       </div>
     </div>
