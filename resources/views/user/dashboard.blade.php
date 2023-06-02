@@ -49,20 +49,8 @@
                                 <p>VHF Channel: {{ $marina->vhf_channel }}</p>
                                 <p>Tel: {{ $marina->phone_number }}</p>
                             </div>
-                            <div class="mb-5">
-                                <h3 class="text-lg font-bold">Gate Times</h3>
-                                <p>x</p>
-                                <p>x</p>
-                                <p>x</p>
-                                <p>x</p>
-                            </div>
-                            <div class="mb-5">
-                                <h3 class="text-lg font-bold">Tide Times</h3>
-                                <p>x</p>
-                                <p>x</p>
-                                <p>x</p>
-                                <p>x</p>
-                            </div>
+                            @dump($marina->nextEvents)
+                            @include('user.components.marinaevents', ['events' => []])
                             <div class="mb-5">
                                 <h3 class="text-lg font-bold">Messages</h3>
                                 <p>None</p>
