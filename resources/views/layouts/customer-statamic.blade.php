@@ -12,7 +12,7 @@
 
 <body>
     <div class="bg-white">
-        <div class="bg-brandblue p-3 h-20">
+        <div class="bg-brandblue p-3 h-16">
             <div>@include('pages.pagecomponents.header')</div>
         </div>
 

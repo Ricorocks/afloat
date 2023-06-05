@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -30,7 +31,7 @@ class TideResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('height')
                     ->required(),
-                Forms\Components\DateTimePicker::make('tide_at')
+                Forms\Components\DateTimePicker::make('happens_at')
                     ->required(),
                 Forms\Components\TextInput::make('type')
                     ->required(),
@@ -43,7 +44,7 @@ class TideResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('marina.name'),
                 Tables\Columns\TextColumn::make('height'),
-                Tables\Columns\TextColumn::make('tide_at')
+                Tables\Columns\TextColumn::make('happens_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -52,7 +53,8 @@ class TideResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+                SelectFilter::make('marina')
+                    ->relationship('marina', 'name'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

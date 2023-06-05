@@ -22,7 +22,7 @@ class AddressFactory extends Factory
             'postcode' => $this->faker->postcode(),
             'alpha_two_code' => $this->faker->countryCode(),
             'alpha_three_code' => $this->faker->countryISOAlpha3(),
-            'location' => new Point($this->faker->latitude(), $this->faker->longitude()),
+            //'location' => new Point($this->faker->latitude(), $this->faker->longitude()),
         ];
     }
 }

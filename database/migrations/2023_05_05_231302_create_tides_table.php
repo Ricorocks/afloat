@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Marina::class);
             $table->integer('height');
-            $table->dateTime('tide_at');
+            $table->dateTime('happens_at');
             $table->string('type');
             $table->timestamps();
         });
