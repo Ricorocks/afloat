@@ -22,6 +22,7 @@ use App\Models\BerthBooking;
 use App\Models\BerthContract;
 use App\Models\BoatYardService;
 use App\Models\BerthBookingRate;
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -70,5 +71,9 @@ class AppServiceProvider extends ServiceProvider
             'user' => User::class,
             'vehicle' => Vehicle::class,
         ]);
+
+        Filament::serving(function () {
+            Filament::registerViteTheme('resources/css/filament.css');
+        });
     }
 }

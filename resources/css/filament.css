@@ -1,0 +1,13 @@
+@import '../../vendor/filament/filament/resources/css/app.css';
+
+.filament-sidebar-header::before {
+    background-image: none;
+}
+
+.filament-sidebar-item-active a, .filament-button {
+    @apply bg-brandblue
+}
+
+.filament-icon-button-icon {
+    @apply text-brandblue
+}
