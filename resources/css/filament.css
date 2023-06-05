@@ -1,0 +1,25 @@
+@import '../../vendor/filament/filament/resources/css/app.css';
+
+.filament-sidebar-header::before {
+    background-image: none;
+}
+
+.filament-sidebar-item-active a, .filament-button {
+    @apply bg-brandblue
+}
+
+.filament-icon-button-icon {
+    @apply text-brandblue
+}
+
+.filament-login-page form::before {
+    background-image: none;
+}
+
+.filament-login-page {
+    background-image: radial-gradient(
+        circle at top,
+        rgb(185, 215, 244),
+        #fff 50%
+    );
+}
