@@ -6,3 +6,6 @@ preferences:
   collections:
     pages:
       after_save: continue_editing
+  assets:
+    site_assets:
+      mode: grid

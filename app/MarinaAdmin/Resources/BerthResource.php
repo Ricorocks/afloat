@@ -20,7 +20,9 @@ class BerthResource extends Resource
     
     protected static ?string $model = Berth::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-location-marker';
+
+    protected static ?string $navigationGroup = 'Marina Admin';
 
     public static function form(Form $form): Form
     {
