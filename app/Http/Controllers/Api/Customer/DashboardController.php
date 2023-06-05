@@ -47,15 +47,15 @@ class DashboardController extends Controller
             });
 
         $tideEvents = $boat->marina->tides()
-            ->whereDate('tide_at', '>', now())
-            ->orderBy('tide_at')
+            ->whereDate('happens_at', '>', now())
+            ->orderBy('happens_at')
             ->limit(4)
             ->get()
             ->map(function(Tide $tide) {
                 return [
                     'id' => $tide->id,
                     'event_type' => 'tide',
-                    'date' => $tide->tide_at,
+                    'date' => $tide->happens_at,
                     'event_name' => strtolower($tide->type),
                     'height_in_cm' => $tide->height,
                     'gate' => null,

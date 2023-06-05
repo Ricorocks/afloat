@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -49,7 +50,8 @@ class GateResource extends Resource
                     ->dateTime()->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('marina')
+                    ->relationship('marina', 'name'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

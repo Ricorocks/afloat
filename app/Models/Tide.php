@@ -12,7 +12,7 @@ class Tide extends Model
     use HasFactory;
 
     protected $casts = [
-        'tide_at' => 'datetime'
+        'happens_at' => 'datetime'
     ];
 
     public function marina(): BelongsTo

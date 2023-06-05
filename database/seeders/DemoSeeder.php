@@ -75,7 +75,7 @@ class DemoSeeder extends Seeder
                     ->state(new Sequence(
                         fn ($sequence) => [
                             'label' => $sequence->index  % 2 == 0 ? 'lowered' : 'raised',
-                            'happens_at' => $date->clone()->addHour(($sequence->index*6))
+                            'happens_at' => $date->clone()->addHour(($sequence->index*6)+3)
                             ]
                     ))
                 ))

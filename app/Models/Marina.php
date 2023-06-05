@@ -20,12 +20,21 @@ class Marina extends Model
         'lattitude', 'longitude'
     ];
 
-    public function getNextEventsAttribute()
+    public function getNextEventsAttribute($limit = 8)
     {
         $tides = $this->tides()
-            ->whereDate('tide_at', '>', now())
-            ->orderBy('tide_at')
-            ->limit(8);
+            ->whereDate('happens_at', '>', now())
+            ->orderBy('happens_at')
+            ->limit($limit)
+            ->get();
+        $gates = $this->gates->first()->gateEvents()
+            ->whereDate('happens_at', '>', now())
+            ->orderBy('happens_at')
+            ->limit($limit)
+            ->get();
+        
+        $events = $tides->merge($gates)->sortBy('happens_at');
+        return $events;
         // $gateEvents = (all gate events and name, dates as above)
         // return combination in date order
         // Event Type (gate or tide) | Event Date Time | Event Name (High, Low, Lowered, Raised) | Gate Name or Null

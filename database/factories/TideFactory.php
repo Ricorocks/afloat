@@ -22,7 +22,7 @@ class TideFactory extends Factory
     {
         $tides = [
             'height' => $this->getTideHeight($this->state),
-            'tide_at' => now()->addMinutes($this->minutes),
+            'happens_at' => now()->addMinutes($this->minutes),
             'type' => $this->state
         ];
 
