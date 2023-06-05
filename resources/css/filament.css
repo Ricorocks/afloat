@@ -11,3 +11,15 @@
 .filament-icon-button-icon {
     @apply text-brandblue
 }
+
+.filament-login-page form::before {
+    background-image: none;
+}
+
+.filament-login-page {
+    background-image: radial-gradient(
+        circle at top,
+        rgb(185, 215, 244),
+        #fff 50%
+    );
+}
