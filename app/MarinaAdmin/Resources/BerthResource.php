@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;
@@ -20,7 +21,9 @@ class BerthResource extends Resource
     
     protected static ?string $model = Berth::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-location-marker';
+
+    protected static ?string $navigationGroup = 'Marina Admin';
 
     public static function form(Form $form): Form
     {
@@ -56,22 +59,25 @@ class BerthResource extends Resource
                 Tables\Columns\TextColumn::make('leg'),
                 Tables\Columns\TextColumn::make('berth_number'),
                 Tables\Columns\TextColumn::make('internal_id'),
-                Tables\Columns\TextColumn::make('max_length_in_cm'),
-                Tables\Columns\TextColumn::make('max_width_in_cm'),
-                Tables\Columns\TextColumn::make('max_draught_in_cm'),
-                Tables\Columns\TextColumn::make('overlay_x'),
-                Tables\Columns\TextColumn::make('overlay_y'),
-                Tables\Columns\TextColumn::make('overlay_rotate'),
-                Tables\Columns\TextColumn::make('marina.name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('max_length_in_cm')
+                ->label('Max length'),
+                Tables\Columns\TextColumn::make('max_width_in_cm')
+                ->label('Max width'),
+                Tables\Columns\TextColumn::make('max_draught_in_cm')
+                ->label('Max draught'),
+                Tables\Columns\IconColumn::make('activeContract')
+                    ->options([
+                        'heroicon-o-x-circle' => false,
+                        'heroicon-o-check-circle' => true,
+                    ])
+                    ->colors([
+                        'warning' => false,
+                        'success' => true,
+                    ]),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
+                //TernaryFilter::make('activeContract')->nullable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

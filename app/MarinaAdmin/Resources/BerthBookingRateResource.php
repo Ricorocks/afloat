@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\MarinaAdmin\Resources;
 
-use App\Filament\Resources\BerthBookingRateResource\Pages;
-use App\Filament\Resources\BerthBookingRateResource\RelationManagers;
+use App\MarinaAdmin\Resources\BerthBookingRateResource\Pages;
+use App\MarinaAdmin\Resources\BerthBookingRateResource\RelationManagers;
 use App\Models\BerthBookingRate;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -12,9 +12,12 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;
 
 class BerthBookingRateResource extends Resource
 {
+    use ContextualResource;
+
     protected static ?string $model = BerthBookingRate::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-cash';
@@ -56,7 +59,6 @@ class BerthBookingRateResource extends Resource
                 Tables\Columns\TextColumn::make('max_length_in_cm'),
                 Tables\Columns\TextColumn::make('min_length_in_cm'),
                 Tables\Columns\TextColumn::make('day_rate_per_meter')->money('GBP'),
-                Tables\Columns\TextColumn::make('marina.name'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -92,6 +94,6 @@ class BerthBookingRateResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
-            ]);
+            ])->where('marina_id', auth()->user()->current_marina);
     }
 }

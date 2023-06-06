@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\MarinaAdmin\Resources;
 
 use App\Filament\Resources\BerthBookingResource\Pages;
 use App\Filament\Resources\BerthBookingResource\RelationManagers;
@@ -17,9 +17,12 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;
 
 class BerthBookingResource extends Resource
 {
+    use ContextualResource;
+
     protected static ?string $model = BerthBooking::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
@@ -125,6 +128,6 @@ class BerthBookingResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
-            ]);
+            ])->where('marina_id', auth()->user()->current_marina);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\MarinaAdmin\Resources;
 
-use App\Filament\Resources\TideResource\Pages;
-use App\Filament\Resources\TideResource\RelationManagers;
+use App\MarinaAdmin\Resources\TideResource\Pages;
+use App\MarinaAdmin\Resources\TideResource\RelationManagers;
 use App\Models\Tide;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -14,9 +14,12 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;
 
 class TideResource extends Resource
 {
+    use ContextualResource;
+
     protected static ?string $model = Tide::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-flag';
@@ -43,35 +46,30 @@ class TideResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('marina.name'),
                 Tables\Columns\TextColumn::make('height'),
                 Tables\Columns\TextColumn::make('happens_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
             ])
             ->filters([
-                SelectFilter::make('marina')
-                    ->relationship('marina', 'name'),
-                Filter::make('happens_at')
-                    ->form([
-                        Forms\Components\DatePicker::make('happens_at_from'),
-                        Forms\Components\DatePicker::make('happens_at_until'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['happens_at_from'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('happens_at', '>=', $date),
-                            )
-                            ->when(
-                                $data['happens_at_until'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('happens_at', '<=', $date),
-                            );
-                    })
+  
+                // Filter::make('happens_at')
+                // ->form([
+                //     Forms\Components\DatePicker::make('happens_at_from'),
+                //     Forms\Components\DatePicker::make('happens_at_until'),
+                // ])
+                // ->query(function (Builder $query, array $data): Builder {
+                //     return $query
+                //         ->when(
+                //             $data['happens_at_from'],
+                //             fn (Builder $query, $date): Builder => $query->whereDate('happens_at', '>=', $date),
+                //         )
+                //         ->when(
+                //             $data['happens_at_until'],
+                //             fn (Builder $query, $date): Builder => $query->whereDate('happens_at', '<=', $date),
+                //         );
+                // })
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -96,4 +94,10 @@ class TideResource extends Resource
             'edit' => Pages\EditTide::route('/{record}/edit'),
         ];
     }    
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+        ->where('marina_id', auth()->user()->current_marina);
+    }
 }

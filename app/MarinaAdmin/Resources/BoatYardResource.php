@@ -2,29 +2,28 @@
 
 namespace App\MarinaAdmin\Resources;
 
-use App\MarinaAdmin\Resources\MarinaStaffResource\Pages;
-use App\MarinaAdmin\Resources\MarinaStaffResource\RelationManagers;
-use App\Models\MarinaStaff;
+use App\MarinaAdmin\Resources\BoatYardResource\Pages;
+use App\MarinaAdmin\Resources\BoatYardResource\RelationManagers;
+use App\Models\BoatYard;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;
 
-class MarinaStaffResource extends Resource
+class BoatYardResource extends Resource
 {
     use ContextualResource;
 
-    protected static ?string $model = MarinaStaff::class;
+    protected static ?string $model = BoatYard::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-exclamation';
 
     protected static ?string $navigationGroup = 'Marina Admin';
-
-    protected static ?string $navigationLabel = 'Marina Staff';
 
     public static function form(Form $form): Form
     {
@@ -32,12 +31,11 @@ class MarinaStaffResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->email()
+                Forms\Components\TextInput::make('telephone_number')
+                    ->tel()
                     ->required(),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
+                Forms\Components\Select::make('marina_id')
+                    ->relationship('marina', 'name')
                     ->required(),
             ]);
     }
@@ -47,19 +45,17 @@ class MarinaStaffResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('telephone_number'),
+
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
+                SelectFilter::make('marina')
+                    ->relationship('marina', 'name'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -71,16 +67,17 @@ class MarinaStaffResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\BoatYardServicesRelationManager::class,
         ];
     }
     
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMarinaStaff::route('/'),
-            'create' => Pages\CreateMarinaStaff::route('/create'),
-            'edit' => Pages\EditMarinaStaff::route('/{record}/edit'),
+            'index' => Pages\ListBoatYards::route('/'),
+            'create' => Pages\CreateBoatYard::route('/create'),
+            'edit' => Pages\EditBoatYard::route('/{record}/edit'),
+            'view' => Pages\ViewBoatYard::route('/{record}'),
         ];
     }    
     
@@ -89,6 +86,6 @@ class MarinaStaffResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
-            ])->where('current_marina', auth()->user()->current_marina);
+            ])->where('marina_id', auth()->user()->current_marina);
     }
 }

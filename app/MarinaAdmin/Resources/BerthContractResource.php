@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\MarinaAdmin\Resources;
 
-use App\Filament\Resources\BerthContractResource\Pages;
-use App\Filament\Resources\BerthContractResource\RelationManagers;
+use App\MarinaAdmin\Resources\BerthContractResource\Pages;
+use App\MarinaAdmin\Resources\BerthContractResource\RelationManagers;
 use App\Models\BerthContract;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;
 
 class BerthContractResource extends Resource
 {
+    use ContextualResource;
+
     protected static ?string $model = BerthContract::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -47,7 +49,6 @@ class BerthContractResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('berth.marina.name'),
                 Tables\Columns\TextColumn::make('berth.id'),
                 Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('boat.name'),
@@ -92,9 +93,14 @@ class BerthContractResource extends Resource
     
     public static function getEloquentQuery(): Builder
     {
+        // return parent::getEloquentQuery()
+        //     ->withoutGlobalScopes([
+        //         SoftDeletingScope::class,
+        //     ])->where('berth.marina', auth()->user()->current_marina);
         return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
+        ->withoutGlobalScopes([
+            SoftDeletingScope::class,
+        ])
+        ->with('berth')->whereRelation('berth', 'marina_id', auth()->user()->current_marina);
     }
 }

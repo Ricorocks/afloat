@@ -2,9 +2,9 @@
 
 namespace App\MarinaAdmin\Resources;
 
-use App\MarinaAdmin\Resources\GateResource\Pages;
-use App\MarinaAdmin\Resources\GateResource\RelationManagers;
-use App\Models\Gate;
+use App\MarinaAdmin\Resources\KeyResource\Pages;
+use App\MarinaAdmin\Resources\KeyResource\RelationManagers;
+use App\Models\Key;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -12,25 +12,29 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Iotronlab\FilamentMultiGuard\Concerns\ContextualPage;
 use Iotronlab\FilamentMultiGuard\Concerns\ContextualResource;
 
-class GateResource extends Resource
+class KeyResource extends Resource
 {
     use ContextualResource;
 
-    protected static ?string $model = Gate::class;
+    protected static ?string $model = Key::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
 
-    protected static ?string $navigationGroup = 'Gates & Tides';
+    protected static ?string $navigationGroup = 'Marina Admin';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('code')
                     ->required(),
+                Forms\Components\Select::make('marina_id')
+                    ->relationship('marina', 'name')
+                    ->required(),
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name'),
             ]);
     }
 
@@ -38,21 +42,21 @@ class GateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('location'),
+                Tables\Columns\TextColumn::make('code'),
+                Tables\Columns\TextColumn::make('user.name'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\ForceDeleteBulkAction::make(),
-                Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
     
@@ -66,17 +70,15 @@ class GateResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGates::route('/'),
-            'create' => Pages\CreateGate::route('/create'),
-            'edit' => Pages\EditGate::route('/{record}/edit'),
+            'index' => Pages\ListKeys::route('/'),
+            'create' => Pages\CreateKey::route('/create'),
+            'edit' => Pages\EditKey::route('/{record}/edit'),
         ];
-    }    
+    }   
     
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ])->where('marina_id', auth()->user()->current_marina);
+        ->where('marina_id', auth()->user()->current_marina);
     }
 }
