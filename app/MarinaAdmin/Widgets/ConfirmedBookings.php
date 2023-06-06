@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Widgets;
+namespace App\MarinaAdmin\Widgets;
 
 use App\Models\BerthBooking;
 use Closure;
@@ -13,8 +13,9 @@ class ConfirmedBookings extends BaseWidget
     protected function getTableQuery(): Builder
     {
         return BerthBooking::query()
+            ->whereNotNull('confirmed_at')
             ->whereDate('starts_at', '>=', now())
-            ->whereNotNull('confirmed_at');
+            ->whereRelation('berth', 'marina_id', auth()->user()->current_marina);
     }
 
     protected function getTableColumns(): array
