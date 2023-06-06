@@ -2,8 +2,8 @@
 
 namespace App\MarinaAdmin\Resources;
 
-use App\Filament\Resources\BoatYardResource\Pages;
-use App\Filament\Resources\BoatYardResource\RelationManagers;
+use App\MarinaAdmin\Resources\BoatYardResource\Pages;
+use App\MarinaAdmin\Resources\BoatYardResource\RelationManagers;
 use App\Models\BoatYard;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -46,13 +46,7 @@ class BoatYardResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('telephone_number'),
-                Tables\Columns\TextColumn::make('marina.name'),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

@@ -61,8 +61,6 @@ class BerthContractResource extends Resource
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -95,9 +93,14 @@ class BerthContractResource extends Resource
     
     public static function getEloquentQuery(): Builder
     {
+        // return parent::getEloquentQuery()
+        //     ->withoutGlobalScopes([
+        //         SoftDeletingScope::class,
+        //     ])->where('berth.marina', auth()->user()->current_marina);
         return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ])->where('marina_id', auth()->user()->current_marina);
+        ->withoutGlobalScopes([
+            SoftDeletingScope::class,
+        ])
+        ->with('berth')->whereRelation('berth', 'marina_id', auth()->user()->current_marina);
     }
 }

@@ -55,8 +55,7 @@ class BerthBookingRateResource extends Resource
                     ->date(),
                 Tables\Columns\TextColumn::make('max_length_in_cm'),
                 Tables\Columns\TextColumn::make('min_length_in_cm'),
-                Tables\Columns\TextColumn::make('day_rate_per_meter'),
-                Tables\Columns\TextColumn::make('currency'),
+                Tables\Columns\TextColumn::make('day_rate_per_meter')->money('GBP'),
                 Tables\Columns\TextColumn::make('marina.name'),
             ])
             ->filters([
