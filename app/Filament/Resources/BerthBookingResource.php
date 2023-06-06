@@ -67,14 +67,12 @@ class BerthBookingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('starts_at')
-                    ->date(),
+                    ->date()->label('From'),
                 Tables\Columns\TextColumn::make('ends_at')
-                    ->date(),
+                    ->date()->label('To'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()->label('Booked'),
                 Tables\Columns\TextColumn::make('berth.id'),
                 Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('boat.name'),

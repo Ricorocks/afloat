@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Boat;
 use App\Models\BerthBookingRate;
 use App\Models\InvoiceItem;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -50,5 +51,19 @@ class BerthBooking extends Model
     public function invoiceItem(): BelongsTo
     {
         return $this->belongsTo(InvoiceItem::class);
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        return money($this->berthBookingRate->day_rate_per_meter , 'GBP')
+            ->multiply($this->nights)
+            ->multiply($this->boat->length_in_cm/100);
+    }
+
+    public function getNightsAttribute()
+    {
+        $date = Carbon::parse($this->starts_at);
+        $dateTo = Carbon::parse($this->ends_at);
+        return $date->diffInDays($dateTo);
     }
 }
