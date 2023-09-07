@@ -13,14 +13,14 @@
 <body>
     <div class="bg-white">
         <div class="bg-brandblue p-3 h-16">
-            <div>@include('pages.pagecomponents.header')</div>
+            <div>@include('layouts.pagecomponents.header')</div>
         </div>
 
         <div>
             @yield('main')
         </div>
 
-        @include('pages.pagecomponents.footer')
+        @include('layouts.pagecomponents.footer')
     </div>
     <div class="hidden text-brandblue text-brandlightblue text-brandgrey text-brandwhite 
     bg-brandblue bg-brandlightblue bg-brandgrey bg-brandwhite"></div>

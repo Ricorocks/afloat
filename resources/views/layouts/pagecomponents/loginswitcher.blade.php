@@ -11,7 +11,7 @@
     <a href="{{ route('devmenu') }}" class="text-sm font-semibold leading-6 text-white">Log in <span
             aria-hidden="true">&rarr;</span></a>
     @endif
-@else
+@elseif ($logon_type == 'customer')
     @if ($customer = Auth::guard('web')->user())
     <a href="{{ route('marina-admin.auth.login') }}" class="text-sm font-semibold leading-6 text-white"  onclick="event.preventDefault(); document.getElementById('logout-customer-form').submit();">
         Log Out
@@ -24,6 +24,8 @@
     <a href="{{ route('devmenu') }}" class="text-sm font-semibold leading-6 text-white">Log in <span
             aria-hidden="true">&rarr;</span></a>
     @endif
+@else
+
 @endif
     
 

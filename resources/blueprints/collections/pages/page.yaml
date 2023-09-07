@@ -60,6 +60,7 @@ tabs:
               options:
                 customer: Customer
                 marina: Marina
+                none: None
               taggable: false
               push_tags: false
               multiple: false
@@ -70,6 +71,17 @@ tabs:
               type: select
               display: 'Logon Type'
               icon: select
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: hide_menu
+            field:
+              default: false
+              type: toggle
+              display: 'Hide Menu'
+              icon: toggle
               listable: hidden
               instructions_position: above
               visibility: visible

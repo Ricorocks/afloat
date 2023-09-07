@@ -26,7 +26,7 @@
                     <p class="mt-6 text-lg leading-8 text-white">{{ $content->hero_content }}</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
                         @if ($content->button_1_link)
-                            @include('pages.pagecomponents.button', [
+                            @include('layouts.pagecomponents.button', [
                                 'text' => $content->button_1_link_text, 
                                 'link' => $content->button_1_link, 
                                 'background_colour' => $content->button_1_background_colour, 
@@ -36,7 +36,7 @@
                         @if ($content->button_2_link)
                         {{-- <a href="{{ $content->button_2_link }}" class="text-sm font-semibold leading-6 text-white">{{ $content->button_2_link_text }}<span
                             aria-hidden="true">→</span></a> --}}
-                            @include('pages.pagecomponents.button', [
+                            @include('layouts.pagecomponents.button', [
                                 'text' => $content->button_2_link_text, 
                                 'link' => $content->button_2_link,
                                 'background_colour' => $content->button_2_background_colour, 

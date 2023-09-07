@@ -13,11 +13,11 @@
     </head>
     <body>
         <div class="bg-white">
-            @include('pages.pagecomponents.header')
+            @include('layouts.pagecomponents.header')
 
             @yield('main')
 
-            @include('pages.pagecomponents.footer')
+            @include('layouts.pagecomponents.footer')
         </div>
     </body>
 </html>

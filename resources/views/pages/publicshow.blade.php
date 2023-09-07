@@ -5,7 +5,7 @@
 
     @if($content->type != "text")
     
-    @include('pages.pagebuilder.'.$content->type, ['content' => $content])
+    @include('layouts.pagebuilder.'.$content->type, ['content' => $content])
     
     @endif
     
