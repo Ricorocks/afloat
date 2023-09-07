@@ -527,6 +527,88 @@ fields:
                 -
                   import: button
                   prefix: button_2_
+            content_with_square_image:
+              display: 'Content with Square Image'
+              instructions: null
+              icon: null
+              fields:
+                -
+                  handle: pre_title
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: 'Pre Title'
+                    icon: text
+                    width: 50
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: title
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: Title
+                    icon: text
+                    width: 50
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: content
+                  field:
+                    automatic_line_breaks: true
+                    automatic_links: false
+                    escape_markup: false
+                    smartypants: false
+                    restrict: false
+                    antlers: false
+                    type: markdown
+                    display: Content
+                    icon: markdown
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: image_content
+                  field:
+                    antlers: false
+                    type: textarea
+                    display: 'Image Content'
+                    icon: textarea
+                    width: 66
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                -
+                  handle: image
+                  field:
+                    mode: list
+                    container: site_assets
+                    restrict: false
+                    allow_uploads: true
+                    show_filename: true
+                    show_set_alt: true
+                    type: assets
+                    display: Image
+                    icon: assets
+                    width: 33
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                    max_files: 1
+            form:
+              display: Form
+              instructions: null
+              icon: null
+              fields: {  }
       type: bard
       display: 'Content Builder'
       icon: bard

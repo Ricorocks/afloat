@@ -1,0 +1,50 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: name
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: Name
+              icon: text
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: email
+            field:
+              input_type: email
+              antlers: false
+              type: text
+              display: Email
+              icon: text
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: interest
+            field:
+              options:
+                sailor: Sailor
+                marina: Marina
+                tech: 'Technical Integration'
+              taggable: false
+              push_tags: false
+              multiple: false
+              clearable: false
+              searchable: true
+              cast_booleans: false
+              type: select
+              display: Interest
+              icon: select
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
