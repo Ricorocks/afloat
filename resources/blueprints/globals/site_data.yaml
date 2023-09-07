@@ -1,0 +1,58 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: menu_1_title
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Menu 1 Title'
+              icon: text
+              width: 25
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: menu_2_title
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Menu 2 Title'
+              icon: text
+              width: 25
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: menu_3_title
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Menu 3 Title'
+              icon: text
+              width: 25
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: menu_4_title
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Menu 4 Title'
+              icon: text
+              width: 25
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
