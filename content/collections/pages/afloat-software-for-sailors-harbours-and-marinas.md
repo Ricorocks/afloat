@@ -40,6 +40,6 @@ content_builder:
 logo_type: standard
 logon_type: none
 updated_by: 85dddd73-504a-4ae3-8b99-2095a1abfa09
-updated_at: 1694081626
+updated_at: 1694082310
 hide_menu: true
 ---
